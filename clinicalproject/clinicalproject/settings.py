@@ -75,8 +75,12 @@ WSGI_APPLICATION = 'clinicalproject.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'alitasparavolar',
+        'USER': 'user',
+        'PASSWORD': 'password',
+        'HOST': 'db_mysql_clinicalproject',  # Esto es el nombre del servicio del contenedor Docker
+        'PORT': '3306',
     }
 }
 
