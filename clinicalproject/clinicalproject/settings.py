@@ -77,8 +77,8 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'alitasparavolar',
-        'USER': 'user',
-        'PASSWORD': 'password',
+        'USER': 'root',
+        'PASSWORD': 'root',
         'HOST': 'db_mysql_clinicalproject',  # Esto es el nombre del servicio del contenedor Docker
         'PORT': '3306',
     }

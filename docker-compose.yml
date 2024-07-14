@@ -14,11 +14,11 @@ services:
 
   web:
     build:
-     context: .
      dockerfile: Dockerfile
+     context: .
     container_name: web_django_clinicalproject
     working_dir: /opt/back_end/clinicalproject/
-    command: /bin/sh -c "python manage.py migrate && python manage.py runserver 0.0.0.0:8000"
+    command: /bin/sh -c "cd /opt/back_end && chmod +x entrypoint.sh && ./entrypoint.sh"
     healthcheck:
       test: /bin/sh -c "cd /opt/back_end && chmod +x healthcheck.sh && ./healthcheck.sh"
     volumes:
