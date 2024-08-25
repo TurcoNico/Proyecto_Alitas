@@ -2,7 +2,7 @@ from django.db import models
 
 # Create your models here.
 
-class Contacto(models.Model):
+class Contactos(models.Model):
     telefono = models.CharField(max_length=20)
     celular = models.CharField(max_length=20)
     correo_electronico = models.EmailField(max_length=100)
@@ -12,7 +12,7 @@ class Profesionales(models.Model):
     nombre = models.CharField(max_length=100)
     codigo_identidad = models.CharField(max_length=16)
     profesion = models.CharField(max_length=100)
-    contacto = models.ForeignKey(Contacto, on_delete=models.CASCADE)
+    contacto = models.ForeignKey(Contactos, on_delete=models.CASCADE)
 
 class ObrasSociales(models.Model):
     nombre = models.CharField(max_length=40)
