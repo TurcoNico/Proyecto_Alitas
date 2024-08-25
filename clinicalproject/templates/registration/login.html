@@ -1,0 +1,30 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Alitas Para Volar</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+</head>
+<body>
+    <div class="layout">
+        <div class="layout__left">
+            <img src="../../static/img/logo_alitas.png" alt="">
+        </div>
+        <div class="layout__authentication">
+            <h1 class="heading">Iniciar Sesión</h1>
+            <p class="description">Ingrese usuario y contraseña para continuar</p>
+            <form class="login-form" method="post">
+                {% csrf_token %}
+                {{ form.as_p }}
+                <button class="login-form__button" type="submit">Login</button>
+            </form>
+        </div>
+    </div>
+</body>
+</html>
