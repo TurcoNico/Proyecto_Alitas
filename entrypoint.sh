@@ -15,3 +15,7 @@ python manage.py migrate
 
 # Arrancar el servidor
 python manage.py runserver 0.0.0.0:8000
+
+# Migraciones de apps
+python manage.py makemigrations appointment
+python manage.py migrate appointment
