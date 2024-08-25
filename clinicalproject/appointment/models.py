@@ -45,7 +45,7 @@ class Pacientes(models.Model):
     nacionalidad = models.CharField(max_length=18)
     sexo = models.BooleanField()
     ocupacion = models.CharField(max_length=60)
-    estado_civil = models.CharField(max_length=20, choices=[
+    estado_civil = models.CharField(max_length=42, choices=[
         ('Soltero/a', 'Soltero/a'),
         ('Casado/a', 'Casado/a'),
         ('Divorciado/a', 'Divorciado/a'),
@@ -54,7 +54,7 @@ class Pacientes(models.Model):
         ('Separado/a', 'Separado/a'),
         ('En una Relacion de Pareja (No Formalizada)', 'En una Relacion de Pareja (No Formalizada)'),
     ])
-    escolaridad = models.CharField(max_length=20, choices=[
+    escolaridad = models.CharField(max_length=34, choices=[
         ('Sin Estudios', 'Sin Estudios'),
         ('Primaria Incompleta', 'Primaria Incompleta'),
         ('Primaria Completa', 'Primaria Completa'),
