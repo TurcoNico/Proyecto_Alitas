@@ -12,19 +12,19 @@
     <link rel="stylesheet" href="{% static 'css/styles.css' %}">
 </head>
 <body>
-    <div class="layout">
-        <div class="layout__left">
-            <img src="../../static/img/logo_alitas.png" alt="">
+    <div class="auth-layout">
+        <div class="auth-layout__logo">
+            <img src="../../static/img/logo_alitas.png" alt="Logo">
         </div>
-        <div class="layout__authentication">
-            <h1 class="heading">Iniciar Sesión</h1>
-            <p class="description">Ingrese usuario y contraseña para continuar</p>
-            <form class="login-form" method="post">
+        <div class="auth-layout__content">
+            <h1 class="auth-layout__title">Iniciar Sesión</h1>
+            <p class="auth-layout__description">Ingrese usuario y contraseña para continuar</p>
+            <form action='/signin/' method="POST" class="auth-form">
                 {% csrf_token %}
-                {{ form.as_p }}
-                <button class="login-form__button" type="submit">Login</button>
+                {{ form }}
+                <button class="auth-form__submit" type="submit">Iniciar Sesión</button>
             </form>
-        </div>
+        </div>      
     </div>
 </body>
 </html>
