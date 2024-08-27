@@ -3,14 +3,14 @@ from django.contrib.auth.forms import AuthenticationForm
 
 class CustomAuthenticationForm(AuthenticationForm):
     username = forms.CharField(
-        label='',  # Elimina el label
+        label='',
         widget=forms.TextInput(attrs={
             'class': 'auth-form__input-user', 
-            'placeholder': 'Nombre de usuario', 
+            'placeholder': 'Usuario', 
         })
     )
     password = forms.CharField(
-        label='',  # Elimina el label
+        label='',
         widget=forms.PasswordInput(attrs={
             'class': 'auth-form__input-pass', 
             'placeholder': 'Contraseña', 

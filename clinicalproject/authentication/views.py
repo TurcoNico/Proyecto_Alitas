@@ -1,3 +1,4 @@
+from django.http import HttpResponse
 from django.shortcuts import render
 from django.contrib.auth import login, authenticate
 from django.contrib.auth.forms import UserCreationForm
@@ -13,13 +14,15 @@ def signin(request):
     else:
         user = authenticate(request, username=request.POST['username'], password=request.POST['password'])
         if user is None:
+            print('Usuario y/o contraseña son incorrectos')
             return render(request, 'signin.html', {
                 'form': CustomAuthenticationForm(),
                 'error': 'El nombre de usuario y/o contraseña son incorrectos'
             })
         else:
-            login(request, user)
-            return render(request, 'home.html')
+            print('Inicio de sesión exitoso')
+            login(request, user) # Inicio de sesión, se habilita las cookies de sessionid.
+            return HttpResponse('Has iniciado sesión')
 
 def signup(request):
     if request.method == 'GET':

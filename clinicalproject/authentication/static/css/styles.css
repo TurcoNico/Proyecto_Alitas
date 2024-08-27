@@ -52,7 +52,20 @@ background-color: #00000030;
 display: flex;
 justify-content: center;
 align-items: center;
+flex-direction: column;
 }
+
+.auth-layout__logo a{
+  color: #fff;
+  font-weight: 700;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+  font-size: 1.2em;
+  }
+
+  .auth-layout__logo a:hover {
+    color: rgba(10,154,158, 1);
+    
+  }
 /* ------------------------------- */
 
 /* -----Left Layout Elements----- */
@@ -66,8 +79,7 @@ align-items: center;
 justify-content: center;
 }
 
-.auth-layout__title, 
-.auth-layout__description {
+.auth-layout__title{
   color: white;
   font-size: 2.5em;
   margin: 0;
@@ -75,29 +87,51 @@ justify-content: center;
 }
 
 .auth-layout__description {
-font-size: 1em;
-font-weight: 500;
+font-size: 1.2em;
+font-weight: 600;
+color: rgb(22, 66, 91);
+text-shadow: 2px 2px 4px rgba(127.5, 127.5, 127.5, 0.5);
 }
 
 .auth-form{
-  width: 200px;
+  width: 250px;
   margin: 10px;
   display: flex;
   flex-direction: column; /* Alinea los elementos en columna */
   gap: 10px; /* Añade un espacio de 10px entre los elementos */
 }
 
-/* Inputs Auth Form */
+/*-----------Input Auth Form-----------*/
 .auth-form__input-user,
 .auth-form__input-pass{
   width: 100%;
   height: 29px;
   border: 1px solid transparent;
   border-radius: 3px;
+  font-weight: 600;
 }
 
+.auth-form__input-user::placeholder,
+.auth-form__input-pass::placeholder{
+  color: #00192d;
+  opacity: 0.9;
+}
 
-/* ---------------- */
+.auth-form__input-user {
+  background-image: url('/static/img/icon_user.svg');
+  background-repeat: no-repeat;
+  background-position: left center;
+  padding-left: 1.5rem; /* Ajusta según el tamaño del SVG */
+}
+
+.auth-form__input-pass {
+  background-image: url('/static/img/icon_pass.svg');
+  background-repeat: no-repeat;
+  background-position: left center;
+  padding-left: 1.5rem; /* Ajusta según el tamaño del SVG */
+}
+
+/*--------------------------------------*/
 
 /* Submit Button Form */
 .auth-form__submit {
