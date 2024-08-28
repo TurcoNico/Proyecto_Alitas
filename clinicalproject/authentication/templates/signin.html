@@ -23,13 +23,20 @@
         </div>
         <div class="auth-layout__content">
             <h1 class="auth-layout__title">Iniciar Sesión</h1>
+
+            {% if error %}
+            <p class="auth-layout__description-error">
+                {{ error }}
+            </p>
+            {% else %}
+
             <p class="auth-layout__description">
                 Ingrese usuario y contraseña para continuar
             </p>
-            <form action="{% url 'signin' %}" method="POST" class="auth-form">
-                <?xml version="1.0" encoding="utf-8"?><!-- Uploaded to: SVG Repo, www.svgrepo.com, Generator: SVG Repo Mixer Tools -->
+            {% endif %}
+
+            <form action="{% url 'signin' %}" method="POST" class="auth-form" autocomplete="off">
                 {% csrf_token %} {{ form }}
-                {{ error }}
                 <button class="auth-form__submit" type="submit">
                     Iniciar Sesión
                 </button>
