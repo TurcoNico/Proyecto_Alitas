@@ -1,10 +1,9 @@
 from django.http import HttpResponse
 from django.shortcuts import render
 from django.contrib.auth import login, authenticate
-from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
 from django.db import IntegrityError
-from .forms import CustomAuthenticationForm 
+from .forms import CustomAuthenticationForm, CustomUserCreationForm
 
 def signin(request):
     if request.method == 'GET':
@@ -27,7 +26,7 @@ def signin(request):
 def signup(request):
     if request.method == 'GET':
         return render(request, 'signup.html', {
-            'form': UserCreationForm()
+            'form': CustomUserCreationForm()
         })
     else:
         if request.POST['password1'] == request.POST['password2']:
@@ -37,11 +36,11 @@ def signup(request):
                 return render(request, 'signin.html')
             except IntegrityError:
                 return render(request, 'signup.html', {
-                    'form': UserCreationForm(),
+                    'form': CustomUserCreationForm(),
                     'error': 'El nombre de usuario ya existe'
                 })
         else:
             return render(request, 'signup.html', {
-                'form': UserCreationForm(),
+                'form': CustomUserCreationForm(),
                 'error': 'Las contraseñas no coinciden'
             })

@@ -44,7 +44,7 @@ z-index: -1;
 }
 /* --------------------- */
 
-/* -----Right Layout Elements----- */
+/* -----Left Layout Elements----- */
 .auth-layout__logo {
 flex: 1;
 height: 100%;
@@ -68,7 +68,7 @@ flex-direction: column;
   }
 /* ------------------------------- */
 
-/* -----Left Layout Elements----- */
+/* -----Right Layout Elements----- */
 .auth-layout__content {
 flex: 1;
 height: 100%;
@@ -86,11 +86,16 @@ justify-content: center;
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
 }
 
-.auth-layout__description {
+.auth-layout__description,
+.auth-layout__description-error {
 font-size: 1.2em;
 font-weight: 600;
 color: rgb(22, 66, 91);
 text-shadow: 2px 2px 4px rgba(127.5, 127.5, 127.5, 0.5);
+}
+
+.auth-layout__description-error {
+color: #bd0003; 
 }
 
 .auth-form{
