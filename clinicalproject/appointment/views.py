@@ -1,31 +1,38 @@
-from django.shortcuts import render
-from django.views import View
-from django.http import HttpResponse
-from .models import Paises
-from django.views.decorators.csrf import csrf_exempt
+from django.shortcuts import render, get_object_or_404, redirect
+from .models import Contactos
+from .forms import ContactosForm
 
+def appointment_view(request):
+    return render(request, 'appointment.html')
 
-class PaisesCrud(View):
-    def get(self, request):
-        # Maneja la solicitud GET
-        paises = Paises.objects.all()
-        strPaises=""
-        for pais in paises:
-            print(pais.nombre_pais)
-            strPaises += pais.nombre_pais + "<br>"
-        return HttpResponse(strPaises)
-    def post(self, request):
-        newPais=Paises.objects.create(nombre_pais=request.data.get("nuevoPais"))
-        
-        return HttpResponse("Usuario creado con éxito")
+def contactos_list(request):
+    contactos = Contactos.objects.all()
+    return render(request, 'contactos_list.html', {'contactos': contactos})
 
-    def put(self, request, pk):
-        # Maneja la solicitud PUT
-        # Actualiza un usuario existente
-        return HttpResponse("Usuario actualizado con éxito")
+def contactos_create(request):
+    if request.method == 'POST':
+        form = ContactosForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('contactos_list')
+    else:
+        form = ContactosForm()
+    return render(request, 'contactos_form.html', {'form': form})
 
-    def delete(self, request, pk):
-        # Maneja la solicitud DELETE
-        # Elimina un usuario existente
-        return HttpResponse("Usuario eliminado con éxito")
-# Create your views here.
+def contactos_update(request, pk):
+    contacto = get_object_or_404(Contactos, pk=pk)
+    if request.method == 'POST':
+        form = ContactosForm(request.POST, instance=contacto)
+        if form.is_valid():
+            form.save()
+            return redirect('contactos_list')
+    else:
+        form = ContactosForm(instance=contacto)
+    return render(request, 'contactos_form.html', {'form': form})
+
+def contactos_delete(request, pk):
+    contacto = get_object_or_404(Contactos, pk=pk)
+    if request.method == 'POST':
+        contacto.delete()
+        return redirect('contactos_list')
+    return render(request, 'contactos_confirm_delete.html', {'contacto': contacto})

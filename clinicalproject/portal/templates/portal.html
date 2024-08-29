@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Accesos Rápidos</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background-color: #f0f0f0;
+            margin: 0;
+        }
+
+        .app-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+            gap: 20px;
+            max-width: 600px;
+            width: 100%;
+            padding: 20px;
+            background-color: #ffffff;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+        }
+
+        .app-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            text-decoration: none;
+            color: #333333;
+            border-radius: 10px;
+            padding: 10px;
+            transition: background-color 0.3s ease;
+        }
+
+        .app-item:hover {
+            background-color: #e0e0e0;
+        }
+
+        .app-icon {
+            width: 50px;
+            height: 50px;
+            margin-bottom: 10px;
+        }
+
+        .app-text {
+            font-size: 14px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div class="app-container">
+        <a href="{% url 'appointment' %}" class="app-item">
+            <img src="icono1.png" alt="Icono 1" class="app-icon">
+            <div class="app-text">Sistema de Turnos</div>
+        </a>
+        <a href="https://ejemplo2.com" class="app-item">
+            <img src="icono2.png" alt="Icono 2" class="app-icon">
+            <div class="app-text">Historiales Clinicos</div>
+        </a>
+        <a href="https://ejemplo3.com" class="app-item">
+            <img src="icono3.png" alt="Icono 3" class="app-icon">
+            <div class="app-text">Informes</div>
+        </a>
+        <!-- Agrega más accesos según sea necesario -->
+    </div>
+</body>
+</html>

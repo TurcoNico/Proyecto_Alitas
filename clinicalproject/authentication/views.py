@@ -1,5 +1,4 @@
-from django.http import HttpResponse
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.contrib.auth import login, authenticate
 from django.contrib.auth.models import User
 from django.db import IntegrityError
@@ -21,7 +20,7 @@ def signin(request):
         else:
             print('Inicio de sesión exitoso')
             login(request, user) # Inicio de sesión, se habilita las cookies de sessionid.
-            return HttpResponse('Has iniciado sesión')
+            return redirect('portal')
 
 def signup(request):
     if request.method == 'GET':
@@ -33,7 +32,7 @@ def signup(request):
             try:
                 user = User.objects.create_user(username=request.POST['username'], password=request.POST['password1'])
                 user.save()
-                return render(request, 'signin.html')
+                return redirect('login')
             except IntegrityError:
                 return render(request, 'signup.html', {
                     'form': CustomUserCreationForm(),

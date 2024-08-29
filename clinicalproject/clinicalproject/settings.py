@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'authentication',
     'appointment',
+    'portal', 
 ]
 
 MIDDLEWARE = [
@@ -133,4 +134,5 @@ STATIC_URL = 'static/'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-LOGIN_REDIRECT_URL = 'https://www.youtube.com/watch?v=xvFZjo5PgG0'  # Cambia '/ruta-destino/' por la URL a la que quieres redirigir
+LOGIN_URL = '/login/' # Redirige a los usuarios a la página de login cuando no están autenticados.
+LOGIN_REDIRECT_URL = '/login/' #
