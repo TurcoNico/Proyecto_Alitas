@@ -35,7 +35,7 @@
             </p>
             {% endif %}
 
-            <form action="{% url 'signin' %}" method="POST" class="auth-form" autocomplete="off">
+            <form action="{% url 'login' %}" method="POST" class="auth-form" autocomplete="off">
                 {% csrf_token %} {{ form }}
                 <button class="auth-form__submit" type="submit">
                     Iniciar Sesión
