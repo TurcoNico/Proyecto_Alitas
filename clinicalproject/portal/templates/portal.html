@@ -1,3 +1,4 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -44,8 +45,8 @@
         }
 
         .app-icon {
-            width: 50px;
-            height: 50px;
+            width: 100px;
+            height: 100px;
             margin-bottom: 10px;
         }
 
@@ -58,7 +59,7 @@
 <body>
     <div class="app-container">
         <a href="{% url 'appointment' %}" class="app-item">
-            <img src="icono1.png" alt="Icono 1" class="app-icon">
+            <img src="../static/rsc/icon/appointment-icon.png" alt="appointment" class="app-icon">
             <div class="app-text">Sistema de Turnos</div>
         </a>
         <a href="https://ejemplo2.com" class="app-item">
