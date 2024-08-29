@@ -1,2 +1,4 @@
 from django.shortcuts import render
-from django.views import View
+
+def appointment_view(request):
+    return render(request, 'appointment.html')
