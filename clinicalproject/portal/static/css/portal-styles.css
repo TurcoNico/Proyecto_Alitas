@@ -1,0 +1,200 @@
+/*-----------CSS Reset-----------*/
+*, 
+*:after,
+*:before {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    text-decoration: none;
+}
+/*-------------------------------*/
+
+/*------Style Config Global------*/
+* {
+  font-family: 'Inter', sans-serif;
+}
+
+body {
+  height: 100%;
+  background-color: #D9DCD6;
+}
+
+.main-content {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: calc(100vh - 70px); /* Ajusta según la altura del header */
+    padding: 20px;
+  }
+
+/*-------------------------------*/
+
+/*---------Navbar Styles---------*/
+.header {
+    background-color: #16425B;
+    color: #fff;
+    padding: 10px 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+.header__nav {
+    display: flex;
+    align-items: center;
+    width: 100%;
+}
+
+.header__logo {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+}
+
+.header__logo-image {
+    height: 50px;
+    width: auto;
+}
+
+.header__user-info {
+    display: flex;
+    align-items: center;
+    margin-left: auto;
+}
+
+.header__username {
+    margin-right: 15px;
+    font-size: 16px;
+}
+
+.header__logout-button {
+    background-color: #e74c3c;
+    color: #fff;
+    padding: 8px 12px;
+    text-decoration: none;
+    border-radius: 5px;
+    font-size: 14px;
+    transition: background-color 0.3s;
+}
+
+.header__logout-button:hover {
+    background-color: #c0392b;
+}       
+
+/*-------Logout Button Style-------*/
+.Btn {
+    --black: #FFF;
+    --ch-black: #FFF;
+    --eer-black: #FFF;
+    --night-rider: #FFF;
+    --white: #c20100;
+    --af-white: #c20100;
+    --ch-white: #c20100;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    width: 45px;
+    height: 45px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+    transition-duration: .3s;
+    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.199);
+    background-color: var(--af-white);
+  }
+  
+  .sign {
+    width: 100%;
+    transition-duration: .3s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .sign svg {
+    width: 17px;
+  }
+  
+  .sign svg path {
+    fill: var(--night-rider);
+  }
+  
+  .text {
+    position: absolute;
+    right: 0%;
+    width: 0%;
+    opacity: 0;
+    color: var(--night-rider);
+    font-size: 1.2em;
+    font-weight: 600;
+    white-space: nowrap;
+    overflow: hidden;
+    transition-duration: .3s;
+    padding-bottom: 0.5%;
+  }
+  
+  .Btn:hover {
+    width: 160px;
+    border-radius: 5px;
+    transition-duration: .3s;
+  }
+  
+  .Btn:hover .sign {
+    width: 20%;
+    transition-duration: .3s;
+    padding-left: 15px;
+  }
+  
+  .Btn:hover .text {
+    opacity: 1;
+    width: 75%;
+    transition-duration: .3s;
+    padding-right: 10px;
+  }
+  
+  .Btn:active {
+    transform: translate(2px, 2px);
+  }
+/*-------------------------------*/
+
+.app-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+    gap: 30px;
+    max-width: 600px;
+    width: 100%;
+    padding: 20px;
+    background-color: #ffffff;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+}
+
+.app-container__item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    text-decoration: none;
+    color: #333333;
+    border-radius: 10px;
+    padding: 10px;
+    transition: background-color 0.3s ease;
+}
+
+.app-container__item:hover {
+    background-color: #e0e0e0;
+}
+
+.app-container__item-icon {
+    width: 100px;
+    height: 100px;
+    margin-bottom: 10px;
+}
+
+.app-container__item-text {
+    font-size: 14px;
+    font-weight: bold;
+}

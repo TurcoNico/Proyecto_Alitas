@@ -1,75 +1,51 @@
+{% load static %}
+
 <!DOCTYPE html>
-<html lang="es">
+<html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Accesos Rápidos</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            min-height: 100vh;
-            background-color: #f0f0f0;
-            margin: 0;
-        }
-
-        .app-container {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
-            gap: 20px;
-            max-width: 600px;
-            width: 100%;
-            padding: 20px;
-            background-color: #ffffff;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            border-radius: 10px;
-        }
-
-        .app-item {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            text-align: center;
-            text-decoration: none;
-            color: #333333;
-            border-radius: 10px;
-            padding: 10px;
-            transition: background-color 0.3s ease;
-        }
-
-        .app-item:hover {
-            background-color: #e0e0e0;
-        }
-
-        .app-icon {
-            width: 50px;
-            height: 50px;
-            margin-bottom: 10px;
-        }
-
-        .app-text {
-            font-size: 14px;
-            font-weight: bold;
-        }
-    </style>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Alitas Para Volar</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap"
+        rel="stylesheet" />
+    <link rel="stylesheet" href="{% static 'css/portal-styles.css' %}" />
 </head>
 <body>
-    <div class="app-container">
-        <a href="{% url 'appointment' %}" class="app-item">
-            <img src="icono1.png" alt="Icono 1" class="app-icon">
-            <div class="app-text">Sistema de Turnos</div>
-        </a>
-        <a href="https://ejemplo2.com" class="app-item">
-            <img src="icono2.png" alt="Icono 2" class="app-icon">
-            <div class="app-text">Historiales Clinicos</div>
-        </a>
-        <a href="https://ejemplo3.com" class="app-item">
-            <img src="icono3.png" alt="Icono 3" class="app-icon">
-            <div class="app-text">Informes</div>
-        </a>
-        <!-- Agrega más accesos según sea necesario -->
-    </div>
+    <header class="header">
+        <nav class="header__nav">
+            <a href="/" class="header__logo">
+                <img src="../static/rsc/icon/logo-icon.png" alt="Logo" class="header__logo-image">
+            </a>
+            <div class="header__user-info">
+                <span class="header__username">NombreUsuario</span>
+                <form method="POST" action="{% url 'logout' %}">
+                    {% csrf_token %}
+                    <button class="Btn">
+                        <div class="sign">
+                          <svg viewBox="0 0 512 512">
+                            <path d="M377.9 105.9L500.7 228.7c7.2 7.2 11.3 17.1 11.3 27.3s-4.1 20.1-11.3 27.3L377.9 406.1c-6.4 6.4-15 9.9-24 9.9c-18.7 0-33.9-15.2-33.9-33.9l0-62.1-128 0c-17.7 0-32-14.3-32-32l0-64c0-17.7 14.3-32 32-32l128 0 0-62.1c0-18.7 15.2-33.9 33.9-33.9c9 0 17.6 3.6 24 9.9zM160 96L96 96c-17.7 0-32 14.3-32 32l0 256c0 17.7 14.3 32 32 32l64 0c17.7 0 32 14.3 32 32s-14.3 32-32 32l-64 0c-53 0-96-43-96-96L0 128C0 75 43 32 96 32l64 0c17.7 0 32 14.3 32 32s-14.3 32-32 32z"></path>
+                          </svg>
+                        </div>
+                        <div class="text">Cerrar sesión</div>
+                    </button>
+                </form>
+            </div>
+        </nav>
+    </header>
+    <main class="main-content">
+        <div class="app-container">
+            <a href="{% url 'appointment' %}" class="app-container__item">
+                <img src="../static/rsc/icon/appointment-icon.png" alt="appointment" class="app-container__item-icon">
+                <div class="app-container__item-text">Sistema de Turnos</div>
+            </a>
+            <a href="{% url 'appointment' %}" class="app-container__item">
+                <img src="../static/rsc/icon/medical-history-icon.png" alt="Icono 2" class="app-container__item-icon">
+                <div class="app-container__item-text">Historiales Medicos</div>
+            </a>
+        </div>
+    </main>
 </body>
 </html>

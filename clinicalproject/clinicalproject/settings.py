@@ -135,4 +135,5 @@ STATIC_URL = 'static/'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 LOGIN_URL = '/login/' # Redirige a los usuarios a la página de login cuando no están autenticados.
-LOGIN_REDIRECT_URL = '/login/' #
+
+LOGOUT_REDIRECT_URL = '/login/'  # Redirige a la página de inicio o a la URL que prefieras
