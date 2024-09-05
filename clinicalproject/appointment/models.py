@@ -1,18 +1,11 @@
 from django.db import models
 
 # Create your models here.
-
-class Contactos(models.Model):
-    telefono = models.CharField(max_length=20)
-    celular = models.CharField(max_length=20)
-    correo_electronico = models.EmailField(max_length=100)
-
 class Profesionales(models.Model):
     apellido = models.CharField(max_length=100)
     nombre = models.CharField(max_length=100)
     codigo_identidad = models.CharField(max_length=16)
     profesion = models.CharField(max_length=100)
-    contacto = models.ForeignKey(Contactos, on_delete=models.CASCADE)
 
 class ObrasSociales(models.Model):
     nombre = models.CharField(max_length=40)
@@ -40,10 +33,10 @@ class Domicilios(models.Model):
 class Pacientes(models.Model):
     nombre = models.CharField(max_length=500)
     apellido = models.CharField(max_length=500)
-    edad = models.IntegerField()
-    codigo_identidad = models.CharField(max_length=16)
     nacionalidad = models.CharField(max_length=18)
+    codigo_identidad = models.CharField(max_length=16)
     sexo = models.BooleanField()
+    celular = models.CharField(max_length=20)
     ocupacion = models.CharField(max_length=60)
     estado_civil = models.CharField(max_length=42, choices=[
         ('Soltero/a', 'Soltero/a'),

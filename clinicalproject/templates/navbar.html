@@ -18,9 +18,13 @@
 <body>
     <header class="header">
         <nav class="header__nav">
-            <a href="/" class="header__logo">
-                <img src="{% static 'rsc/icon/logo-icon.png' %}" alt="Logo" class="header__logo-image">
-            </a>
+            <div class="header__logo">
+            {% block left_nav %}
+                <a href="/">
+                    <img src="{% static 'rsc/icon/logo-icon.png' %}" alt="Logo" class="header__logo-image">
+                </a>
+            {% endblock %}
+            </div>
             <div class="header__user-info">
                 <span class="header__username">NombreUsuario</span>
                 <form method="POST" action="{% url 'logout' %}">

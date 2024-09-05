@@ -1,1 +1,21 @@
 {% extends "navbar.html" %}
+{% load static %}
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/appointment-styles.css' %}">
+{% endblock %}
+{% block left_nav %}
+<img src="{% static 'rsc/icon/appointment-icon.png' %}" alt="Logo" class="header__logo-image">
+{% endblock %}
+{% block content%}
+<main class="main-content">
+    <button class="main-content__create-appointment-button">Crear Turno</button>
+    <div class="main-content_form-appointment">
+        <form method="post">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit">Guardar Contacto</button>
+        </form>
+    </div>
+</main>
+<script src="{% static 'js/appointment-script.js' %}"></script>
+{% endblock %}
