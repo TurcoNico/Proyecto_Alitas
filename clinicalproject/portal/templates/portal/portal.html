@@ -1,17 +1,20 @@
-{% extends "navbar.html" %}
+{% extends "base.html" %}
 {% load static %}
+
+{% block title %}Portal{% endblock %}
 {% block extra_css %}
-<link rel="stylesheet" href="{% static 'css/portal-styles.css' %}">
+<link rel="stylesheet" href="{% static 'portal/css/styles.css' %}">
 {% endblock %}
+
 {% block content %}
 <main class="main-content">
     <div class="app-container">
         <a href="{% url 'appointment' %}" class="app-container__item">
-            <img src="{% static 'rsc/icon/appointment-icon.png' %}" alt="appointment" class="app-container__item-icon">
+            <img src="{% static 'rsc/icon/appointment.png' %}" alt="appointment" class="app-container__item-icon">
             <div class="app-container__item-text">Sistema de Turnos</div>
         </a>
         <a href="{% url 'appointment' %}" class="app-container__item">
-            <img src="{% static 'rsc/icon/medical-history-icon.png' %}" alt="medical-history" class="app-container__item-icon">
+            <img src="{% static 'rsc/icon/medical_history.png' %}" alt="medical-history" class="app-container__item-icon">
             <div class="app-container__item-text">Historiales Medicos</div>
         </a>
     </div>

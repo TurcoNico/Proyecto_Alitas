@@ -1,34 +1,24 @@
 from django.db import models
-
+from  django.contrib.auth.models import User
+from authentication.models import Profesionales
 # Create your models here.
-class Profesionales(models.Model):
-    apellido = models.CharField(max_length=100)
-    nombre = models.CharField(max_length=100)
-    codigo_identidad = models.CharField(max_length=16)
-    profesion = models.CharField(max_length=100)
 
+# class Profesionales(models.Model):
+#     user = models.OneToOneField(User, on_delete=models.CASCADE)
+#     codigo_identidad = models.CharField(max_length=16)
+#     profesion = models.CharField(max_length=100)
+    
 class ObrasSociales(models.Model):
     nombre = models.CharField(max_length=40)
     codigo = models.CharField(max_length=50)
 
-class Paises(models.Model):
-    nombre_pais = models.CharField(max_length=30)
-
-class Provincias(models.Model):
-    nombre_provincia = models.CharField(max_length=50)
-    pais = models.ForeignKey(Paises, on_delete=models.CASCADE)
-    codigo_provincia = models.CharField(max_length=20)
-
-class Localidades(models.Model):
-    provincia = models.ForeignKey(Provincias, on_delete=models.CASCADE)
-    nombre_localidad = models.CharField(max_length=40)
-    codigo_postal = models.CharField(max_length=20)
-
 class Domicilios(models.Model):
+    pais=models.CharField(max_length=50)
+    provincia=models.CharField(max_length=50)
+    localidad= models.CharField(max_length=50)
     calle = models.CharField(max_length=60)
     nro = models.IntegerField()
     detalle = models.CharField(max_length=200)
-    localidad = models.ForeignKey(Localidades, on_delete=models.CASCADE)
 
 class Pacientes(models.Model):
     nombre = models.CharField(max_length=500)
@@ -70,4 +60,9 @@ class Turnos(models.Model):
     timestamp = models.BigIntegerField(primary_key=True)
     paciente = models.ForeignKey(Pacientes, on_delete=models.CASCADE)
     profesional = models.ForeignKey(Profesionales, on_delete=models.CASCADE)
-    asistencia = models.BooleanField()
+    status = models.CharField(max_length=20, choices=[
+        ('Pendiente', 'Pendiente'),
+        ('Asistio', 'Asistio'),
+        ('Cancelado', 'Cancelado'),
+        ('Reprogramado','Reprogramado')
+    ]) 

@@ -1,26 +1,3 @@
-/*-----------CSS Reset-----------*/
-*, 
-*:after,
-*:before {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    text-decoration: none;
-}
-/*-------------------------------*/
-
-
-/*----Style Config Global----*/
-* {
-  font-family: 'Inter', sans-serif;
-}
-
-body {
-  height: 100%;
-}
-
-/* ------------------------- */
-
 /* -----Main Layout----- */
 .auth-layout {
 display: flex;
@@ -37,7 +14,7 @@ top: 0;
 left: 0;
 width: 100%;
 height: 100%;
-background-image: url('../img/bg_auth.png');
+background-image: url("/static/authentication/rsc/img/bg_auth.png");
 background-size: cover;
 background-position: center;
 filter: blur(2px);
@@ -124,14 +101,14 @@ color: #bd0003;
 }
 
 .auth-form__input-user {
-  background-image: url('/static/img/icon_user.svg');
+  background-image: url('/static/authentication/rsc/icon/user.svg');
   background-repeat: no-repeat;
   background-position: left center;
   padding-left: 1.5rem; /* Ajusta según el tamaño del SVG */
 }
 
 .auth-form__input-pass {
-  background-image: url('/static/img/icon_pass.svg');
+  background-image: url('/static/authentication/rsc/icon/pass.svg');
   background-repeat: no-repeat;
   background-position: left center;
   padding-left: 1.5rem; /* Ajusta según el tamaño del SVG */

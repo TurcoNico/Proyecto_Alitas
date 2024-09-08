@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Turnos{% endblock %}
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'appointment/css/styles.css' %}">
+{% endblock %}
+
+{% block left_nav %}
+<img src="{% static 'rsc/icon/appointment.png' %}" alt="Logo" class="header__logo-image">
+{% endblock %}
+
+{% block content %}
+<main class="main-content">
+    <button class="main-content__create-appointment-button">Crear Turno</button>
+    <div class="main-content__form-appointment">
+        <div class="form-appointment__header">
+            <h1>Añadir Turnos</h1>
+            <button>Añadir Paciente</button>
+        </div>
+    </div>
+</main>
+{% endblock %}
+
+{% block scripts.js %}
+<script src="{% static 'appointment/js/scripts.js' %}"></script>
+{% endblock %}

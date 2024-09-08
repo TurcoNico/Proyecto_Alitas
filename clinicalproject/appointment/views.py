@@ -3,4 +3,4 @@ from django.contrib.auth.decorators import login_required
 
 @login_required
 def appointment_view(request):
-    return render(request, 'appointment.html')
+    return render(request, 'appointment/appointment.html')

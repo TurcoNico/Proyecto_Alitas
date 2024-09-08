@@ -6,14 +6,14 @@ from .forms import CustomAuthenticationForm, CustomUserCreationForm
 
 def signin(request):
     if request.method == 'GET':
-        return render(request, 'signin.html', {
+        return render(request, 'authentication/signin.html', {
             'form': CustomAuthenticationForm()
         })
     else:
         user = authenticate(request, username=request.POST['username'], password=request.POST['password'])
         if user is None:
             print('Usuario y/o contraseña son incorrectos')
-            return render(request, 'signin.html', {
+            return render(request, 'authentication/signin.html', {
                 'form': CustomAuthenticationForm(),
                 'error': 'El nombre de usuario y/o contraseña son incorrectos'
             })
@@ -24,7 +24,7 @@ def signin(request):
 
 def signup(request):
     if request.method == 'GET':
-        return render(request, 'signup.html', {
+        return render(request, 'authentication/signup.html', {
             'form': CustomUserCreationForm()
         })
     else:
@@ -34,12 +34,12 @@ def signup(request):
                 user.save()
                 return redirect('login')
             except IntegrityError:
-                return render(request, 'signup.html', {
+                return render(request, 'authentication/signup.html', {
                     'form': CustomUserCreationForm(),
                     'error': 'El nombre de usuario ya existe'
                 })
         else:
-            return render(request, 'signup.html', {
+            return render(request, 'authentication/signup.html', {
                 'form': CustomUserCreationForm(),
                 'error': 'Las contraseñas no coinciden'
             })
