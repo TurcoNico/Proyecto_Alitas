@@ -2,5 +2,5 @@ from django.urls import path
 from . import views
 
 urlpatterns = [
-    path('', views.appointment_view, name='appointment'),
+    path('', views.PacienteTurnoView.as_view(), name='create_pacient_appointment'),
 ]
