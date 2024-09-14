@@ -1,3 +1,0 @@
-Django==5.0.9
-mysqlclient==2.2.4
-django-formset
