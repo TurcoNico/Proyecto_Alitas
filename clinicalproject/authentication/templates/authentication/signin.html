@@ -1,0 +1,51 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Iniciar Sesión{% endblock %}
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'authentication/css/styles.css' %}" />
+{% endblock %}
+
+{% block header %}
+{% endblock %}
+
+{% block content %}
+<main class="auth-layout">
+    <!-- Lado izquierdo de la autenticación-->
+    <div class="auth-layout__logo">
+        <img src="{% static 'rsc/icon/logo.png' %}" alt="Logo Alitas Para Volar" />
+        {% block auth-layout__logo-redirect %}
+        <a href="{% url 'signup' %}">¿Aún no te has registrado?</a>
+        {% endblock %}
+    </div>
+    <!-- Lado derecho de la autenticación-->
+    <div class="auth-layout__content">
+        {% block auth-layout__content %}
+        <h1 class="auth-layout__title">Iniciar Sesión</h1>
+
+        {% if error %}
+        <p class="auth-layout__description-error">
+            {{ error }}
+        </p>
+        {% else %}
+
+        <p class="auth-layout__description">
+            Ingrese usuario y contraseña para continuar
+        </p>
+        {% endif %}
+
+        <form action="{% url 'login' %}" method="POST" class="auth-form" autocomplete="off">
+            {% csrf_token %} 
+            {{ form }}
+            <button class="auth-form__submit" type="submit">
+                Iniciar Sesión
+            </button>
+        </form>
+        {% endblock %}
+    </div>
+</main>
+{% endblock %}
+
+{% block scripts.js %}
+<script src="{% static 'authentication/js/scripts.js' %}"></script>
+{% endblock %}
