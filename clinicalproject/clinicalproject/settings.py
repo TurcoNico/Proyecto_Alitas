@@ -43,7 +43,8 @@ INSTALLED_APPS = [
     'authentication.apps.AuthenticationConfig',
     'appointment.apps.AppointmentConfig',
     'portal.apps.PortalConfig',
-    'rest_framework',
+    'patient.apps.PatientConfig',
+    'formset',
 ]
 
 REST_FRAMEWORK = {
