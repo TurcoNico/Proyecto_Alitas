@@ -18,6 +18,27 @@ class CustomAuthenticationForm(AuthenticationForm):
     )
     
 class CustomUserCreationForm(UserCreationForm):
+    first_name = forms.CharField(
+        label='',
+        widget=forms.TextInput(attrs={
+            'class': 'auth-form__input-user', 
+            'placeholder': 'Nombre', 
+        })
+    )
+    last_name = forms.CharField(
+        label='',
+        widget=forms.TextInput(attrs={
+            'class': 'auth-form__input-user', 
+            'placeholder': 'Apellido', 
+        })
+    )
+    codigo_identidad= forms.CharField(
+        label='',
+        widget=forms.TextInput(attrs={
+            'class': 'auth-form__input-user', 
+            'placeholder': 'Código de Identidad', 
+        })
+    )
     username = forms.CharField(
         label='',
         widget=forms.TextInput(attrs={
@@ -37,5 +58,19 @@ class CustomUserCreationForm(UserCreationForm):
         widget=forms.PasswordInput(attrs={
             'class': 'auth-form__input-pass', 
             'placeholder': 'Repetir contraseña', 
+        })
+    )
+    email = forms.EmailField(
+        label='',
+        widget=forms.EmailInput(attrs={
+            'class': 'auth-form__input-user', 
+            'placeholder': 'Correo Electrónico',
+        })
+    )
+    profesion = forms.CharField(
+        label='',
+        widget=forms.TextInput(attrs={
+            'class': 'auth-form__input-user', 
+            'placeholder': 'Profesión', 
         })
     )

@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect
 from django.contrib.auth import login, authenticate
 from django.contrib.auth.models import User
 from django.db import IntegrityError
+from .models import Profesionales
 from .forms import CustomAuthenticationForm, CustomUserCreationForm
 
 def signin(request):
@@ -30,8 +31,19 @@ def signup(request):
     else:
         if request.POST['password1'] == request.POST['password2']:
             try:
-                user = User.objects.create_user(username=request.POST['username'], password=request.POST['password1'])
+                user = User.objects.create_user(
+                    username=request.POST['username'],
+                    password=request.POST['password1'],
+                    first_name=request.POST['first_name'],
+                    last_name=request.POST['last_name'],
+                    email=request.POST['email'])
                 user.save()
+                
+                profesional= Profesionales.objects.create(
+                    user=user,
+                    profesion = request.POST['profesion'],
+                    codigo_identidad = request.POST['codigo_identidad'])
+                profesional.save()
                 return redirect('login')
             except IntegrityError:
                 return render(request, 'authentication/signup.html', {
