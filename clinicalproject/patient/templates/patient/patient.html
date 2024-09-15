@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Pacientes{% endblock %}
+
+{% block extra_css %}
+{% endblock %}
+
+{% block left_nav %}
+<a href="{% url 'portal' %}">
+    <img src="{% static 'rsc/icon/back_to_menu.svg' %}" alt="back-icon">
+</a>
+<img src="{% static 'rsc/icon/medical_history.png' %}" alt="Logo" class="header__logo-image">
+{% endblock %}
+{% block content %}
+{% endblock %}

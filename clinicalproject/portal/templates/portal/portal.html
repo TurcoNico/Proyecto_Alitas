@@ -9,13 +9,13 @@
 {% block content %}
 <main class="main-content">
     <div class="app-container">
-        <a href="{% url 'create_pacient_appointment' %}" class="app-container__item">
-            <img src="{% static 'rsc/icon/appointment.png' %}" alt="appointment" class="app-container__item-icon">
-            <div class="app-container__item-text">Sistema de Turnos</div>
+        <a href="{% url 'appointment' %}" class="app-container__item">
+            <img src="{% static 'rsc/icon/appointment.png' %}" alt="appointment-icon" class="app-container__item-icon">
+            <div class="app-container__item-text">Turnos</div>
         </a>
-        <a href="https://www.youtube.com/watch?v=uHgt8giw1LY" class="app-container__item">
-            <img src="{% static 'rsc/icon/medical_history.png' %}" alt="medical-history" class="app-container__item-icon">
-            <div class="app-container__item-text">Historiales Medicos</div>
+        <a href="{% url 'patient' %}" class="app-container__item">
+            <img src="{% static 'rsc/icon/medical_history.png' %}" alt="patient-icon" class="app-container__item-icon">
+            <div class="app-container__item-text">Pacientes</div>
         </a>
     </div>
 </main>

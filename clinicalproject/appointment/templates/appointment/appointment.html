@@ -7,8 +7,8 @@
 {% endblock %}
 
 {% block left_nav %}
-<a href="">
-    
+<a href="{% url 'portal' %}">
+    <img src="{% static 'rsc/icon/back_to_menu.svg' %}" alt="back-icon">
 </a>
 <img src="{% static 'rsc/icon/appointment.png' %}" alt="Logo" class="header__logo-image">
 {% endblock %}

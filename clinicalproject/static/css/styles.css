@@ -48,13 +48,44 @@ body {
 
 .header__logo {
     display: flex;
+    height: 45px;
+    width: 100px;
     align-items: center;
     text-decoration: none;
+    justify-content: space-between;
 }
 
+/*-------Back to Menu-------*/
+.header__logo a {
+  display: flex;
+  height: 45px;
+  width: 45px;
+  align-items: center;
+  justify-content: center;
+  background-color: #16425B;
+  border-radius: 10px;
+  transition: background-color 0.3s, transform 0.1s;
+}
+
+.header__logo a:hover {
+  background-color: #12394E;
+  transform: scale(0.95);
+}
+
+.header__logo a svg {
+  transition: transform 0.1s;
+}
+
+.header__logo a:hover svg {
+  transform: scale(0.5);
+}
+
+/*--------------------------*/
+
 .header__logo-image {
-    height: 50px;
-    width: auto;
+  display: block;
+    height: 45px;
+    width: 45px;
 }
 
 .header__user-info {

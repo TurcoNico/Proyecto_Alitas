@@ -1,5 +1,6 @@
 from django.urls import path
-from . import views
+from .views import Appointment
 
 urlpatterns = [
+    path('', Appointment.as_view(), name='appointment'),
 ]
