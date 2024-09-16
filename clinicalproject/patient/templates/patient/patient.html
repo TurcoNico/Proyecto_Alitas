@@ -4,6 +4,7 @@
 {% block title %}Pacientes{% endblock %}
 
 {% block extra_css %}
+<link rel="stylesheet" href="{% static 'patient/css/styles.css' %}">
 {% endblock %}
 
 {% block left_nav %}
@@ -13,4 +14,60 @@
 <img src="{% static 'rsc/icon/medical_history.png' %}" alt="Logo" class="header__logo-image">
 {% endblock %}
 {% block content %}
+<main class='patient-container'>
+    <!-- -------------------------------------------------------------- -->
+    <div class="patient-container__header">
+        <label for="">Buscar Paciente:</label>
+        <div class="patient-container__header-search">
+            <select name="" id="">
+                <option value="">DNI</option>
+            </select>
+            <input type="search" placeholder="Buscar Paciente" id="">
+            <button type="submit">Buscar</button>
+        </div>
+        <button class="patient-container__header-add-patient">
+            Añadir Paciente
+        </button>
+    <!-- -------------------------------------------------------------- -->
+    </div>
+    <table>
+        <thead>
+            <tr>
+                <th>Apellido</th>
+                <th>Nombre</th>
+                <th>Documento</th>
+                <th>Fecha de Nacimiento</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for patient in patients %}
+            <tr>
+                <td>{{ patient.last_name }}</td>
+                <td>{{ patient.first_name }}</td>
+                <td>{{ patient.document }}</td>
+                <td>{{ patient.birth_date }}</td>
+                <td>
+                    <!-- <a href="{% url 'patient_detail' patient.id %}">Ver</a>
+                        <a href="{% url 'patient_edit' patient.id %}">Editar</a>
+                        <a href="{% url 'patient_delete' patient.id %}">Eliminar</a> -->
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+     <!-- -------------------------------------------------------------- -->
+    <div class="patient-container__form-container">
+        <div class="form-container">
+            <div class="form-container__header">
+                <h2>Añadir Paciente:</h2>
+                <button class="form-container__header-close">Cerrar</button>
+            </div>
+        </div>
+    </div>
+     <!-- -------------------------------------------------------------- -->
+</main>
+{% endblock %}
+{% block scripts.js %}
+<script src="{% static 'patient/js/script.js' %}"></script>
 {% endblock %}

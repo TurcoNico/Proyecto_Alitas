@@ -13,9 +13,13 @@
 * {
   font-family: 'Inter', sans-serif;
 }
+html, body {
+  height: 100%;
+  width: 100%;
+}
+
 
 body {
-  height: 100%;
   background-color: #D9DCD6;
 }
 
@@ -38,6 +42,7 @@ body {
     align-items: center;
     justify-content: space-between;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    height: 5%;
 }
 
 .header__nav {
