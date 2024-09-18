@@ -5,6 +5,8 @@
 
 {% block extra_css %}
 <link rel="stylesheet" href="{% static 'patient/css/styles.css' %}">
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script type="module" src="{% static 'formset/js/django-formset.js' %}"></script>
 {% endblock %}
 
 {% block left_nav %}
@@ -63,11 +65,37 @@
                 <h2>Añadir Paciente:</h2>
                 <button class="form-container__header-close">Cerrar</button>
             </div>
+
+            <form method="post">
+                {% csrf_token %}
+                {{ form.pais.label_tag }}  
+                {{ form.pais }}  
+
+                {{ form.provincia.label_tag }}  
+                {{ form.provincia }}  
+
+                {{ form.localidad.label_tag }}  
+                {{ form.localidad }}  
+
+                {{ form.calle.label_tag }}  
+                {{ form.calle }}  
+
+                {{ form.nro.label_tag }}  
+                {{ form.nro }}  
+
+                {{ form.detalle.label_tag }}  
+                {{ form.detalle }}  
+                <button type="submit">Guardar Domicilio</button>
+            </form>
+    
+
         </div>
     </div>
      <!-- -------------------------------------------------------------- -->
 </main>
 {% endblock %}
 {% block scripts.js %}
+<script src="{% static 'smart-selects/admin/js/chainedfk.js' %}"></script>
+<script src="{% static 'smart-selects/admin/js/bindfields.js' %}"></script>
 <script src="{% static 'patient/js/script.js' %}"></script>
 {% endblock %}

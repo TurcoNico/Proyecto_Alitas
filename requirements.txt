@@ -1,3 +1,5 @@
 Django==5.0.9
 mysqlclient==2.2.4
 django-formset
+django-smart-selects
+git+https://github.com/jazzband/django-smart-selects.git@1.7.1

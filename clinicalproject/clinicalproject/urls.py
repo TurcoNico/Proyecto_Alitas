@@ -21,10 +21,12 @@ from django.shortcuts import redirect
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('chaining/', include('smart_selects.urls')),
     path('', include('authentication.urls')),
     path('', lambda request: redirect('/login')),
     path('portal/', include('portal.urls')),
     path('portal/appointment/', include('appointment.urls')),
     path('portal/patient/', include('patient.urls')), 
     path('logout/', auth_views.LogoutView.as_view(), name='logout'),
+    
 ]

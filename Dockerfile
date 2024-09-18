@@ -7,8 +7,9 @@ RUN apk update && apk add --no-cache \
     musl-dev \
     linux-headers \
     build-base \
-    pkgconfig
-
+    pkgconfig \
+    git
+    
 # Establece el directorio de trabajo
 WORKDIR /opt/back_end/
 

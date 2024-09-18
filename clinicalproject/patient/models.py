@@ -1,4 +1,5 @@
 from django.db import models
+from smart_selects.db_fields import ChainedForeignKey
     
 class Paises(models.Model):  
     nombre = models.CharField(max_length=50)
@@ -8,19 +9,39 @@ class Paises(models.Model):
     
 class Provincias(models.Model):  
     nombre = models.CharField(max_length=50)  
-    pais = models.ForeignKey(Paises, on_delete=models.CASCADE)  
+    pais = models.ForeignKey(Paises, on_delete=models.CASCADE)
+    
+    def __str__(self):
+        return self.nombre
 
 class Localidades(models.Model):  
-    nombre = models.CharField(max_length=50)  
-    provincia = models.ForeignKey(Provincias, on_delete=models.CASCADE)  
+    nombre = models.CharField(max_length=55)  
+    provincia = models.ForeignKey(Provincias, on_delete=models.CASCADE)
+    
+    def __str__(self):
+        return self.nombre
 
 class Domicilios(models.Model):  
     pais = models.ForeignKey(Paises, on_delete=models.CASCADE)  
-    provincia = models.ForeignKey(Provincias, on_delete=models.CASCADE)  
-    localidad = models.ForeignKey(Localidades, on_delete=models.CASCADE)  
+    provincia = ChainedForeignKey(
+        Provincias,
+        chained_field="pais",
+        chained_model_field="pais",
+        show_all=False,
+        auto_choose=True,
+        sort=True
+    )
+    localidad = ChainedForeignKey(
+        Localidades,
+        chained_field="provincia",
+        chained_model_field="provincia",
+        show_all=False,
+        auto_choose=True,
+        sort=True
+    )
     calle = models.CharField(max_length=60)  
     nro = models.IntegerField()  
-    detalle = models.CharField(max_length=200)  
+    detalle = models.CharField(max_length=200)
 
 class Pacientes(models.Model):
     class SexChoices(models.TextChoices):

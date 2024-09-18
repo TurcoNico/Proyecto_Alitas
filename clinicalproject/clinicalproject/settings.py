@@ -45,6 +45,7 @@ INSTALLED_APPS = [
     'portal.apps.PortalConfig',
     'patient.apps.PatientConfig',
     'formset',
+    'smart_selects',
 ]
 
 MIDDLEWARE = [
@@ -89,6 +90,9 @@ DATABASES = {
         'PASSWORD': 'root',
         'HOST': 'db_mysql_clinicalproject',  # Esto es el nombre del servicio del contenedor Docker
         'PORT': '3306',
+        'OPTIONS': {  
+            'charset': 'utf8mb4',  
+        }, 
     }
 }
 
@@ -143,3 +147,5 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 LOGIN_URL = '/login/' # Redirige a los usuarios a la página de login cuando no están autenticados.
 
 LOGOUT_REDIRECT_URL = '/login/'  # Redirige a la página de inicio o a la URL que prefieras
+
+JQUERY_URL = True

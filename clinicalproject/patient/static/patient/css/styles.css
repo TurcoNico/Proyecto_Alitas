@@ -39,6 +39,7 @@
 .form-container{
     display: none;
     position: absolute;
+    flex-direction: column;
     width: 50%;
     height: 98%;
     background-color: #fff;

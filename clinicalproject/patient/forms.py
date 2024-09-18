@@ -1,4 +1,7 @@
-from django.core.exceptions import ValidationError
-from django.forms import forms, fields
-from formset.views import FormView
+from django import forms
+from .models import Domicilios
 
+class DomicilioForm(forms.ModelForm):
+    class Meta:
+        model = Domicilios
+        fields = ['pais', 'provincia', 'localidad', 'calle', 'nro', 'detalle']
