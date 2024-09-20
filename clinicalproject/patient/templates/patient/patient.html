@@ -5,16 +5,15 @@
 
 {% block extra_css %}
 <link rel="stylesheet" href="{% static 'patient/css/styles.css' %}">
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<script type="module" src="{% static 'formset/js/django-formset.js' %}"></script>
 {% endblock %}
 
 {% block left_nav %}
 <a href="{% url 'portal' %}">
     <img src="{% static 'rsc/icon/back_to_menu.svg' %}" alt="back-icon">
 </a>
-<img src="{% static 'rsc/icon/medical_history.png' %}" alt="Logo" class="header__logo-image">
+<img src="{% static 'rsc/icon/patient.png' %}" alt="Logo" class="header__logo-image">
 {% endblock %}
+
 {% block content %}
 <main class='patient-container'>
     <!-- -------------------------------------------------------------- -->
@@ -62,19 +61,133 @@
     <div class="patient-container__form-container">
         <div class="form-container">
             <div class="form-container__header">
-                <h2>Añadir Paciente:</h2>
+                <h2>Añadir Paciente</h2>
                 <button class="form-container__header-close">Cerrar</button>
             </div>
 
-            {% load formsetify %}
+            <form class="form-content">
 
-            <django-formset endpoint="{{ request.path }}" csrf-token="{{ csrf_token }}">
-              {% render_form form "tailwind" %}
-              <button type="button" df-click="submit">Submit</button>
-              <button type="button" df-click="reset">Reset to initial</button>
-            </django-formset>
-            
-   
+                <div class="form-content__domicilios">
+
+                    <h3>Datos Personales</h3>
+                    <label for="nombre">Nombre:</label>  
+                    <input type="text" id="nombre" name="nombre" maxlength="50" required>  
+                
+                    <label for="apellido">Apellido:</label>  
+                    <input type="text" id="apellido" name="apellido" maxlength="50" required>  
+                
+                    <label for="sexo">Sexo:</label>  
+                    <select id="sexo" name="sexo" required>  
+                        <option value="">Seleccione una opción</option>  
+                        <option value="M">Masculino</option>  
+                        <option value="F">Femenino</option>  
+                    </select>  
+                
+                    <label for="nacionalidad">Nacionalidad:</label>  
+                    <input type="text" id="nacionalidad" name="nacionalidad" maxlength="20" required>  
+                
+                    <label for="codigo_identidad">Código de Identidad:</label>  
+                    <input type="text" id="codigo_identidad" name="codigo_identidad" maxlength="20" required>  
+                
+                    <label for="celular">Celular:</label>  
+                    <input type="text" id="celular" name="celular" maxlength="20" required>  
+                
+                    <label for="ocupacion">Ocupación:</label>  
+                    <input type="text" id="ocupacion" name="ocupacion" maxlength="60" required>  
+                
+                    <label for="estado_civil">Estado Civil:</label>  
+                    <select id="estado_civil" name="estado_civil" required>  
+                        <option value="">Seleccione una opción</option>  
+                        <option value="Soltero/a">Soltero/a</option>  
+                        <option value="Casado/a">Casado/a</option>  
+                        <option value="Divorciado/a">Divorciado/a</option>  
+                        <option value="Viudo/a">Viudo/a</option>  
+                        <option value="Unido/a en Pareja de Hecho">Unido/a en Pareja de Hecho</option>  
+                        <option value="Separado/a">Separado/a</option>  
+                        <option value="En una Relacion de Pareja (No Formalizada)">En una Relación de Pareja (No Formalizada)</option>  
+                    </select>  
+                
+                    <label for="escolaridad">Escolaridad:</label>  
+                    <select id="escolaridad" name="escolaridad" required>  
+                        <option value="">Seleccione una opción</option>  
+                        <option value="Sin Estudios">Sin Estudios</option>  
+                        <option value="Primaria Incompleta">Primaria Incompleta</option>  
+                        <option value="Primaria Completa">Primaria Completa</option>  
+                        <option value="Secundaria Incompleta">Secundaria Incompleta</option>  
+                        <option value="Secundaria Completa">Secundaria Completa</option>  
+                        <option value="Terciario/Universitario Incompleto">Terciario/Universitario Incompleto</option>  
+                        <option value="Terciario/Universitario Completo">Terciario/Universitario Completo</option>  
+                    </select>  
+                
+                    <label for="servicio_militar">Servicio Militar:</label>  
+                    <select id="servicio_militar" name="servicio_militar" required>  
+                        <option value="">Seleccione una opción</option>  
+                        <option value="Y">Sí</option>  
+                        <option value="N">No</option>  
+                    </select>  
+                
+                    <label for="fecha_nacimiento">Fecha de Nacimiento:</label>  
+                    <input type="date" id="fecha_nacimiento" name="fecha_nacimiento" required> 
+
+                    <div class="form-content__domicilio-habitual">
+                        <h3>Domicilio Habitual</h3>
+                    
+                        <label for="habitual-pais">Pais:</label>
+                        <select id="habitual-pais">
+                            <option value="">Seleccione un país</option>
+                        </select>
+                    
+                        <label for="habitual-provincia">Provincia:</label>
+                        <select id="habitual-provincia" disabled>
+                            <option value="">Seleccione una provincia</option>
+                        </select>
+                    
+                        <label for="habitual-localidad">Localidad:</label>
+                        <select id="habitual-localidad" disabled>
+                            <option value="">Seleccione una localidad</option>
+                        </select>
+                    
+                        <label for="habitual-calle">Calle:</label>
+                        <input type="text" id="habitual-calle" name="habitual-calle">
+                    
+                        <label for="habitual-nro">Nro:</label>
+                        <input type="text" id="habitual-nro" name="habitual-nro">
+                    
+                        <label for="habitual-detalle">Detalle:</label>
+                        <input type="text" id="habitual-detalle" name="habitual-detalle">
+                    </div>    
+                    
+                    <div class="form-content__domicilio-actual">
+                        <h3>Domicilio Actual</h3>
+                    
+                        <label for="actual-pais">Pais:</label>
+                        <select id="actual-pais">
+                            <option value="">Seleccione un país</option>
+                        </select>
+                    
+                        <label for="actual-provincia">Provincia:</label>
+                        <select id="actual-provincia" disabled>
+                            <option value="">Seleccione una provincia</option>
+                        </select>
+                    
+                        <label for="actual-localidad">Localidad:</label>
+                        <select id="actual-localidad" disabled>
+                            <option value="">Seleccione una localidad</option>
+                        </select>
+                    
+                        <label for="actual-calle">Calle:</label>
+                        <input type="text" id="actual-calle" name="actual-calle">
+                    
+                        <label for="actual-nro">Nro:</label>
+                        <input type="text" id="actual-nro" name="actual-nro">
+                    
+                        <label for="actual-detalle">Detalle:</label>
+                        <input type="text" id="actual-detalle" name="actual-detalle">
+                    </div>
+
+                </div>
+
+
             </form>
     
 
@@ -83,8 +196,7 @@
      <!-- -------------------------------------------------------------- -->
 </main>
 {% endblock %}
+
 {% block scripts.js %}
-<script src="{% static 'smart-selects/admin/js/chainedfk.js' %}"></script>
-<script src="{% static 'smart-selects/admin/js/bindfields.js' %}"></script>
 <script src="{% static 'patient/js/script.js' %}"></script>
 {% endblock %}

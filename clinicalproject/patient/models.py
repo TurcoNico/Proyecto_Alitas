@@ -23,22 +23,8 @@ class Localidades(models.Model):
 
 class Domicilios(models.Model):  
     pais = models.ForeignKey(Paises, on_delete=models.CASCADE)  
-    provincia = ChainedForeignKey(
-        Provincias,
-        chained_field="pais",
-        chained_model_field="pais",
-        show_all=False,
-        auto_choose=True,
-        sort=True
-    )
-    localidad = ChainedForeignKey(
-        Localidades,
-        chained_field="provincia",
-        chained_model_field="provincia",
-        show_all=False,
-        auto_choose=True,
-        sort=True
-    )
+    provincia = models.ForeignKey(Provincias, on_delete=models.CASCADE)  
+    localidad = models.ForeignKey(Localidades, on_delete=models.CASCADE)  
     calle = models.CharField(max_length=60)  
     nro = models.IntegerField()  
     detalle = models.CharField(max_length=200)

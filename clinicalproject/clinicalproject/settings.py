@@ -44,8 +44,7 @@ INSTALLED_APPS = [
     'appointment.apps.AppointmentConfig',
     'portal.apps.PortalConfig',
     'patient.apps.PatientConfig',
-    'formset',
-    'smart_selects',
+    'rest_framework',
 ]
 
 MIDDLEWARE = [
@@ -148,4 +147,10 @@ LOGIN_URL = '/login/' # Redirige a los usuarios a la página de login cuando no 
 
 LOGOUT_REDIRECT_URL = '/login/'  # Redirige a la página de inicio o a la URL que prefieras
 
-JQUERY_URL = True
+REST_FRAMEWORK = {
+    # Use Django's standard `django.contrib.auth` permissions,
+    # or allow read-only access for unauthenticated users.
+    'DEFAULT_PERMISSION_CLASSES': [
+        'rest_framework.permissions.DjangoModelPermissionsOrAnonReadOnly'
+    ]
+}

@@ -42,7 +42,7 @@ body {
     align-items: center;
     justify-content: space-between;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
-    height: 5%;
+    height: 50px;
 }
 
 .header__nav {
@@ -54,7 +54,7 @@ body {
 .header__logo {
     display: flex;
     height: 45px;
-    width: 100px;
+    width: 85px;
     align-items: center;
     text-decoration: none;
     justify-content: space-between;
@@ -63,8 +63,8 @@ body {
 /*-------Back to Menu-------*/
 .header__logo a {
   display: flex;
-  height: 45px;
-  width: 45px;
+  height: 40px;
+  width: 40px;
   align-items: center;
   justify-content: center;
   background-color: #16425B;
@@ -89,8 +89,8 @@ body {
 
 .header__logo-image {
   display: block;
-    height: 45px;
-    width: 45px;
+    height: 40px;
+    width: 40px;
 }
 
 .header__user-info {
@@ -130,8 +130,8 @@ body {
     display: flex;
     align-items: center;
     justify-content: flex-start;
-    width: 45px;
-    height: 45px;
+    width: 40px;
+    height: 40px;
     border: none;
     border-radius: 5px;
     cursor: pointer;

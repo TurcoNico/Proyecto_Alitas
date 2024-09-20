@@ -1,28 +1,42 @@
-from formset.views import FormCollectionView, FormView
-from .models import Domicilios, Pacientes
-from .forms import PacienteCollection
-# Test
-from django.views.generic import CreateView
-from .forms import DomicilioForm
-from django.urls import reverse_lazy
+from django.shortcuts import render
+from rest_framework import viewsets
+from rest_framework.response import Response
+from rest_framework import status
+from .models import Paises, Provincias, Localidades
+from .serializers import PaisSerializer, ProvinciaSerializer, LocalidadSerializer
 
-class PatientCollectionView(FormCollectionView):
-    model = Pacientes
-    collection_class = PacienteCollection
-    template_name = 'patient/patient.html'
-    
-#Funcional    
-class Patient(FormView):
-    form_class = DomicilioForm
-    template_name = 'patient/patient.html'
-    
-    def get_form_kwargs(self):
-        kwargs = super().get_form_kwargs()
-        # Puedes añadir cualquier información extra aquí
-        return kwargs
+def indexPatient(request):
+    return render(request, 'patient/patient.html')
 
-    def form_valid(self, form):
-        # Maneja la validación del formulario aquí
-        return super().form_valid(form)
-    
-    
+class PaisViewSet(viewsets.ReadOnlyModelViewSet):
+    """
+    Vista que permite obtener todos los países.
+    """
+    queryset = Paises.objects.all()
+    serializer_class = PaisSerializer
+
+class ProvinciaViewSet(viewsets.ReadOnlyModelViewSet):
+    """
+    Vista que permite obtener provincias, filtrando por país si se especifica.
+    """
+    serializer_class = ProvinciaSerializer
+
+    def get_queryset(self):
+        queryset = Provincias.objects.all()
+        pais_id = self.request.query_params.get('pais_id')
+        if pais_id:
+            queryset = queryset.filter(pais__id=pais_id)
+        return queryset
+
+class LocalidadViewSet(viewsets.ReadOnlyModelViewSet):
+    """
+    Vista que permite obtener localidades, filtrando por provincia si se especifica.
+    """
+    serializer_class = LocalidadSerializer
+
+    def get_queryset(self):
+        queryset = Localidades.objects.all()
+        provincia_id = self.request.query_params.get('provincia_id')
+        if provincia_id:
+            queryset = queryset.filter(provincia__id=provincia_id)
+        return queryset
