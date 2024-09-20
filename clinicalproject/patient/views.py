@@ -1,14 +1,28 @@
-from django.urls import reverse_lazy
+from formset.views import FormCollectionView, FormView
+from .models import Domicilios, Pacientes
+from .forms import PacienteCollection
+# Test
 from django.views.generic import CreateView
-from .models import Domicilios
 from .forms import DomicilioForm
+from django.urls import reverse_lazy
 
-class Patient(CreateView):
-    model = Domicilios
+class PatientCollectionView(FormCollectionView):
+    model = Pacientes
+    collection_class = PacienteCollection
+    template_name = 'patient/patient.html'
+    
+#Funcional    
+class Patient(FormView):
     form_class = DomicilioForm
     template_name = 'patient/patient.html'
-    success_url = reverse_lazy('patient')  # Cambia por la URL de éxito que prefieras
+    
+    def get_form_kwargs(self):
+        kwargs = super().get_form_kwargs()
+        # Puedes añadir cualquier información extra aquí
+        return kwargs
 
     def form_valid(self, form):
-        # Aquí puedes agregar lógica adicional si es necesario
+        # Maneja la validación del formulario aquí
         return super().form_valid(form)
+    
+    

@@ -66,26 +66,15 @@
                 <button class="form-container__header-close">Cerrar</button>
             </div>
 
-            <form method="post">
-                {% csrf_token %}
-                {{ form.pais.label_tag }}  
-                {{ form.pais }}  
+            {% load formsetify %}
 
-                {{ form.provincia.label_tag }}  
-                {{ form.provincia }}  
-
-                {{ form.localidad.label_tag }}  
-                {{ form.localidad }}  
-
-                {{ form.calle.label_tag }}  
-                {{ form.calle }}  
-
-                {{ form.nro.label_tag }}  
-                {{ form.nro }}  
-
-                {{ form.detalle.label_tag }}  
-                {{ form.detalle }}  
-                <button type="submit">Guardar Domicilio</button>
+            <django-formset endpoint="{{ request.path }}" csrf-token="{{ csrf_token }}">
+              {% render_form form "tailwind" %}
+              <button type="button" df-click="submit">Submit</button>
+              <button type="button" df-click="reset">Reset to initial</button>
+            </django-formset>
+            
+   
             </form>
     
 
