@@ -1,5 +1,4 @@
 from django.db import models
-from smart_selects.db_fields import ChainedForeignKey
     
 class Paises(models.Model):  
     nombre = models.CharField(max_length=50)

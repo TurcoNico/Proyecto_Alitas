@@ -1,21 +1,25 @@
 from django.shortcuts import render
-from rest_framework import viewsets
-from rest_framework.response import Response
-from rest_framework import status
-from .models import Paises, Provincias, Localidades
-from .serializers import PaisSerializer, ProvinciaSerializer, LocalidadSerializer
+from rest_framework.viewsets import ModelViewSet, ReadOnlyModelViewSet
+from rest_framework.permissions import IsAuthenticated
+from .models import Paises, Provincias, Localidades, Pacientes
+from .serializers import PaisSerializer, ProvinciaSerializer, LocalidadSerializer, PacienteSerializer
+
+class PacienteViewSet(ModelViewSet):
+    queryset = Pacientes.objects.all()
+    serializer_class = PacienteSerializer
+    permission_classes = [IsAuthenticated]
 
 def indexPatient(request):
     return render(request, 'patient/patient.html')
 
-class PaisViewSet(viewsets.ReadOnlyModelViewSet):
+class PaisViewSet(ReadOnlyModelViewSet):
     """
     Vista que permite obtener todos los países.
     """
     queryset = Paises.objects.all()
     serializer_class = PaisSerializer
 
-class ProvinciaViewSet(viewsets.ReadOnlyModelViewSet):
+class ProvinciaViewSet(ReadOnlyModelViewSet):
     """
     Vista que permite obtener provincias, filtrando por país si se especifica.
     """
@@ -28,7 +32,7 @@ class ProvinciaViewSet(viewsets.ReadOnlyModelViewSet):
             queryset = queryset.filter(pais__id=pais_id)
         return queryset
 
-class LocalidadViewSet(viewsets.ReadOnlyModelViewSet):
+class LocalidadViewSet(ReadOnlyModelViewSet):
     """
     Vista que permite obtener localidades, filtrando por provincia si se especifica.
     """

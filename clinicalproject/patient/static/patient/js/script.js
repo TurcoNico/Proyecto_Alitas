@@ -1,3 +1,4 @@
+// -------------------------Funcion para abrir y cerrar los formularios-------------------------
 const btnAddPatient = document.querySelector('.patient-container__header-add-patient');
 const displayShadowFormPatient = document.querySelector('.patient-container__form-container');
 const displayFormPatient = document.querySelector('.form-container');
@@ -17,10 +18,10 @@ btnCloseFormPatient.addEventListener('click', () => {
     displayShadowFormPatient.style.display = 'none';
     displayFormPatient.style.display = 'none';
 });
+// ---------------------------------------------------------------------------------------------
 
 
-
-// Peticiones GET APi
+// ------------------------Peticiones GET Paises/Provincias/Localidades-------------------------
 document.addEventListener("DOMContentLoaded", function() {
 
     // Función para cargar países en un select específico
@@ -112,5 +113,82 @@ document.addEventListener("DOMContentLoaded", function() {
     // Manejar selección de país y cargar provincias/localidades para actual
     manejarSeleccionPais(actualPaisSelect, actualProvinciaSelect, actualLocalidadSelect);
     manejarSeleccionProvincia(actualProvinciaSelect, actualLocalidadSelect);
-
 });
+
+// ---------------------------------------------------------------------------------------------
+
+
+// ----------------------------Peticiones POST Pacientes/Domicilios-----------------------------
+function getCookie(name) {
+    let cookieValue = null;
+    if (document.cookie && document.cookie !== '') {
+        const cookies = document.cookie.split(';');
+        for (let i = 0; i < cookies.length; i++) {
+            const cookie = cookies[i].trim();
+            // El nombre del cookie debe estar al inicio seguido de un '='
+            if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                break;
+            }
+        }
+    }
+    return cookieValue;
+}
+const csrftoken = getCookie('csrftoken');
+
+document.getElementById('paciente-form').addEventListener('submit', function(event) {
+    event.preventDefault();  // Prevenir envío tradicional
+
+    const formData = {
+        nombre: document.getElementById('nombre').value,
+        apellido: document.getElementById('apellido').value,
+        sexo: document.getElementById('sexo').value,
+        nacionalidad: document.getElementById('nacionalidad').value,
+        codigo_identidad: document.getElementById('codigo_identidad').value,
+        celular: document.getElementById('celular').value,
+        ocupacion: document.getElementById('ocupacion').value,
+        estado_civil: document.getElementById('estado_civil').value,
+        escolaridad: document.getElementById('escolaridad').value,
+        servicio_militar: document.getElementById('servicio_militar').value,
+        fecha_nacimiento: document.getElementById('fecha_nacimiento').value,
+
+        // Domicilio habitual
+        residencia_habitual: {
+            pais: document.getElementById('habitual-pais').value,
+            provincia: document.getElementById('habitual-provincia').value,
+            localidad: document.getElementById('habitual-localidad').value,
+            calle: document.getElementById('habitual-calle').value,
+            nro: document.getElementById('habitual-nro').value,
+            detalle: document.getElementById('habitual-detalle').value
+        },
+
+        // Domicilio actual
+        residencia_actual: {
+            pais: document.getElementById('actual-pais').value,
+            provincia: document.getElementById('actual-provincia').value,
+            localidad: document.getElementById('actual-localidad').value,
+            calle: document.getElementById('actual-calle').value,
+            nro: document.getElementById('actual-nro').value,
+            detalle: document.getElementById('actual-detalle').value
+        }
+    };
+
+    // Hacer la petición POST a la API
+    fetch('/portal/patient/api/pacientes/', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+            'X-CSRFToken': csrftoken  // Añadir el token CSRF en el encabezado
+        },
+        body: JSON.stringify(formData),
+    })
+    .then(response => response.json())
+    .then(data => {
+        console.log('Paciente creado:', data);
+    })
+    .catch((error) => {
+        console.error('Error:', error);
+    });
+});
+
+// ---------------------------------------------------------------------------------------------
