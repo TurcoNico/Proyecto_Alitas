@@ -1,7 +1,7 @@
 // -------------------------Funcion para abrir y cerrar los formularios-------------------------
-const btnAddPatient = document.querySelector('.patient-container__header-add-patient');
-const displayShadowFormPatient = document.querySelector('.patient-container__form-container');
-const displayFormPatient = document.querySelector('.form-container');
+const btnAddPatient = document.querySelector('.patient-get__header-btn');
+const displayShadowFormPatient = document.querySelector('.patient-post');
+const displayFormPatient = document.querySelector('.patient-post__form');
 
 
 btnAddPatient.addEventListener('click', () => {
@@ -12,7 +12,7 @@ btnAddPatient.addEventListener('click', () => {
 
 
 
-const btnCloseFormPatient = document.querySelector('.form-container__header-close');
+const btnCloseFormPatient = document.querySelector('.patient-post__form-header__close');
 
 btnCloseFormPatient.addEventListener('click', () => {
     displayShadowFormPatient.style.display = 'none';
