@@ -27,7 +27,9 @@
             </div>
             <div class="header__user-info">
                 {% block user_info %}
-                <span class="header__username">{{ profesional }} {{ full_name }}</span>
+                <span class="header__user-info__profesional">{{ profesional }}</span>
+                <span class="header__user-info__username">{{ full_name }}</span>
+                {% endblock %}
                 <form method="POST" action="{% url 'logout' %}">
                     {% csrf_token %}
                     <button class="Btn">
@@ -39,7 +41,6 @@
                         <div class="text">Cerrar sesión</div>
                     </button>
                 </form>
-                {% endblock %}
             </div>
         </nav>
     </header>

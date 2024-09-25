@@ -1,26 +1,82 @@
 /*----------Main-Styles----------*/
 .app-container {
+    display: flex;
+    background-color: #FFF;
+    /* background-color: #1E507950; */
+    border-radius: 10px;
+    box-shadow: 0 4px 8px #00000050;
+    height: auto;
+    width: auto;
+    padding: 16px;
+    gap: 16px;
+    flex-wrap: wrap;
+}
+
+.app-container__item {
+    display: flex;
+    position: relative;
+    flex-direction: column;
+    align-items: center;
+    text-decoration: none;
+    border-radius: 10px;
+    transition: background-color 0.3s ease;
+    padding: 16px;
+}
+
+/* .app-container__item:hover {
+    background-color: #e0e0e0;
+} */
+
+.app-container__background {
+    width: 90px;
+    height: 90px;
+    position: absolute;
+    filter: 
+        blur(40px)
+        saturate(400%);
+    z-index: 0;
+    opacity: 0; /* Escondemos el fondo inicialmente */
+    transition: opacity 0.3s ease; /* Transición suave para mostrar el fondo */
+}
+
+.app-container__item:hover .app-container__background {
+    opacity: 1; /* Mostramos el fondo al hacer hover */
+}
+
+.app-container__item-icon {
+    width: 90px;
+    height: 90px;
+    z-index: 1;
+}
+
+.app-container__item-text {
+    font-size: 14px;
+    color: #000;
+    font-weight: bold;
+    z-index: 1;
+}
+/*-------------------------------*/
+/*----------Main-Styles----------*/
+/* .app-container {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
-    gap: 30px;
-    max-width: 600px;
-    width: 100%;
-    padding: 20px;
+    grid-template-columns: repeat(12, 1fr);
+    width: auto;
     background-color: #ffffff;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     border-radius: 10px;
+    padding: 16px;
+    gap: 16px;
 }
 
 .app-container__item {
     display: flex;
     flex-direction: column;
     align-items: center;
-    text-align: center;
     text-decoration: none;
     color: #333333;
     border-radius: 10px;
-    padding: 10px;
     transition: background-color 0.3s ease;
+    padding: 16px;
 }
 
 .app-container__item:hover {
@@ -28,13 +84,13 @@
 }
 
 .app-container__item-icon {
-    width: 100px;
-    height: 100px;
+    width: 90px;
+    height: 90px;
     margin-bottom: 10px;
 }
 
 .app-container__item-text {
     font-size: 14px;
     font-weight: bold;
-}
+} */
 /*-------------------------------*/

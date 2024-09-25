@@ -5,7 +5,7 @@
     flex-direction: column;
     align-items: center;
     width: 100%;
-    height: 95%;
+    height: 90%;
 }
 /*-----------------------------------*/
 
@@ -163,15 +163,21 @@
 /*-------------------------------------*/
 
 /*-----------Body Form Style----------*/
-.patient-post__form-body__content{
-    display: flex;
-    flex-direction: column;
-    width: 100%;
-    height: 100%;
-    padding: 20px;
-    overflow-y: auto;
+.patient-post__form-body__content-data {
+    display: grid;
+    grid-template-columns: repeat(12, 1fr); /* Crea 12 columnas flexibles */
+    gap: 1rem; /* Espacio entre los elementos */
 }
 
-.patient-post__form-body__content-address{
-    display: flex;
+.patient-post__form-body__content-address {
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    gap: 1rem;
+}
+
+.patient-post__form-body__content-address-usual,
+.patient-post__form-body__content-address-current {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    gap: 1rem;
 }
