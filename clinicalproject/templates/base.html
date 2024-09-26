@@ -25,6 +25,8 @@
                     <img src="{% static 'rsc/icon/logo.png' %}" alt="Logo" class="header__logo-image">
                 {% endblock %}
             </div>
+            {% block center_nav %}
+            {% endblock %}
             <div class="header__user-info">
                 {% block user_info %}
                 <span class="header__user-info__profesional">{{ profesional }}</span>

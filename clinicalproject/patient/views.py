@@ -1,13 +1,28 @@
 from django.shortcuts import render
 from rest_framework.viewsets import ModelViewSet, ReadOnlyModelViewSet
 from rest_framework.permissions import IsAuthenticated
+from rest_framework.response import Response
+from rest_framework.decorators import action
 from .models import Paises, Provincias, Localidades, Pacientes
-from .serializers import PaisSerializer, ProvinciaSerializer, LocalidadSerializer, PacienteSerializer
+from .serializers import PaisSerializer, ProvinciaSerializer, LocalidadSerializer, PacienteSerializer, PacienteBasicInfoSerializer
 
 class PacienteViewSet(ModelViewSet):
     queryset = Pacientes.objects.all()
-    serializer_class = PacienteSerializer
+    serializer_class = PacienteSerializer  # Este es el serializer por defecto
     permission_classes = [IsAuthenticated]
+
+    # Acción adicional para devolver solo la información básica
+    @action(detail=False, methods=['get'])
+    def basico(self, request):
+        pacientes = self.get_queryset()  # Obtener todos los pacientes
+        serializer = PacienteBasicInfoSerializer(pacientes, many=True)
+        return Response(serializer.data)
+
+    # Sobrescribir el método `retrieve` para devolver el detalle completo de un paciente
+    def retrieve(self, request, pk=None):
+        paciente = self.get_object()  # Obtener el paciente por el id (pk)
+        serializer = PacienteSerializer(paciente)
+        return Response(serializer.data)
 
 def indexPatient(request):
     return render(request, 'patient/patient.html')

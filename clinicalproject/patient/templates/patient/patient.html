@@ -14,61 +14,47 @@
 <img src="{% static 'rsc/icon/patient.png' %}" alt="Logo" class="header__logo-image">
 {% endblock %}
 
+{% block center_nav %}
+{% endblock %}
+
 <!-- Sacar para ver la info de user -->
-{% block user_info %} 
+{% block user_info %}
+<div class="patient-get__header-search">
+    <select name="" id="">
+        <option value="">DNI</option>
+    </select>
+    <input type="search" placeholder="Buscar Paciente" id="">
+    <button type="submit">
+        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
+            <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001q.044.06.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1 1 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0"/>
+        </svg>
+    </button>
+</div>
+<button class="patient-get__header-btn">
+    Añadir Paciente
+</button>
+
+
+
+    
+    <!-- -------------------------------------------------------------- -->
+</div>
 {% endblock %}
 
 {% block content %}
 <main class='patient'>
     <div class="patient-get">
-        <!-- -------------------------------------------------------------- -->
-        <div class="patient-get__header">
-            <label for="">Buscar Paciente:</label>
-            <div class="patient-get__header-search">
-                <select name="" id="">
-                    <option value="">DNI</option>
-                </select>
-                <input type="search" placeholder="Buscar Paciente" id="">
-                <button type="submit">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
-                        <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001q.044.06.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1 1 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0"/>
-                    </svg>
-                </button>
+        <div class="patient-get__table">
+            <div class="patient-get__table-header">
+                <span class="col-3">Apellido</span>
+                <span class="col-3">Nombre</span>
+                <span class="col-2">Codigo de Identidad</span>
+                <span class="col-2">Fecha de Nacimiento</span>
+                <span class="col-2">Acciones</span>
             </div>
-
-            
-            <button class="patient-get__header-btn">
-                Añadir Paciente
-            </button>
-            <!-- -------------------------------------------------------------- -->
+            <div class="patient-get__table-body">
+            </div>
         </div>
-        <table>
-            <thead>
-                <tr>
-                    <th>Apellido</th>
-                    <th>Nombre</th>
-                    <th>Documento</th>
-                    <th>Fecha de Nacimiento</th>
-                    <th>Acciones</th>
-                </tr>
-            </thead>
-            <tbody>
-                {% for patient in patients %}
-                <tr>
-                    <td>{{ patient.last_name }}</td>
-                    <td>{{ patient.first_name }}</td>
-                    <td>{{ patient.document }}</td>
-                    <td>{{ patient.birth_date }}</td>
-                    <td>
-                        <!-- <a href="{% url 'patient_detail' patient.id %}">Ver</a>
-                            <a href="{% url 'patient_edit' patient.id %}">Editar</a>
-                            <a href="{% url 'patient_delete' patient.id %}">Eliminar</a> -->
-                    </td>
-                </tr>
-                {% endfor %}
-            </tbody>
-        </table>
-        <!-- -------------------------------------------------------------- -->
     </div>
     <div class="patient-post">
         <div class="patient-post__form">

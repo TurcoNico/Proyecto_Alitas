@@ -1,4 +1,9 @@
 /*----------Main-Styles----------*/
+.main-content {
+    flex: 1; /* Este es el truco para que `main` ocupe el espacio restante */  
+    width: 100%; /* Ancho del main */  
+}
+
 .app-container {
     display: flex;
     background-color: #FFF;
