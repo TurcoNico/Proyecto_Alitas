@@ -24,8 +24,14 @@
     align-items: center;
     text-decoration: none;
     border-radius: 10px;
-    transition: background-color 0.3s ease;
+    transition: background-color 0.3s ease, transform 0.3s ease;
     padding: 16px;
+    z-index: 0;
+}
+
+.app-container__item:hover {
+    transform: scale(1.1); /* Aumentar el tamaño del ítem al hacer hover */
+    z-index: 10; /* Asegurarse de que se superponga a otros elementos durante el hover */
 }
 
 /* .app-container__item:hover {
@@ -33,24 +39,25 @@
 } */
 
 .app-container__background {
-    width: 90px;
-    height: 90px;
+    width: 80px;
+    height: 80px;
     position: absolute;
     filter: 
         blur(40px)
         saturate(400%);
     z-index: 0;
     opacity: 0; /* Escondemos el fondo inicialmente */
-    transition: opacity 0.3s ease; /* Transición suave para mostrar el fondo */
+    transition: opacity 0.3s ease, transform 0.3s ease; /* Transición suave para mostrar el fondo */
 }
 
 .app-container__item:hover .app-container__background {
     opacity: 1; /* Mostramos el fondo al hacer hover */
+    transform: scale(1.2); /* Hacer que el fondo crezca ligeramente también */
 }
 
 .app-container__item-icon {
-    width: 90px;
-    height: 90px;
+    width: 80px;
+    height: 80px;
     z-index: 1;
 }
 

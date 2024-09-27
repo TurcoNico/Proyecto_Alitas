@@ -1,125 +1,132 @@
-// -------------------------Funcion para abrir y cerrar los formularios-------------------------
+// -------------------------Function to open and close the forms-------------------------
+const btnClosePatientForm = document.querySelector('.patient-post__form-header__close');
 const btnAddPatient = document.querySelector('.patient-get__header-btn');
-const displayShadowFormPatient = document.querySelector('.patient-post');
-const displayFormPatient = document.querySelector('.patient-post__form');
+const formOverlay = document.querySelector('.patient-post');
+const formPatient = document.querySelector('.patient-post__form');
 
+// Function to open and close the form
+function closePatientForm() {
+    formOverlay.style.display = 'none';
+    formPatient.style.display = 'none';
+};
 
+function openPatientForm() {
+    formOverlay.style.display = 'flex';
+    formPatient.style.display = 'flex';
+};
+
+// Event listeners
 btnAddPatient.addEventListener('click', () => {
-    console.log('click');
-    displayShadowFormPatient.style.display = 'flex';
-    displayFormPatient.style.display = 'flex';
+    openPatientForm()
 });
 
-
-
-const btnCloseFormPatient = document.querySelector('.patient-post__form-header__close');
-
-btnCloseFormPatient.addEventListener('click', () => {
-    displayShadowFormPatient.style.display = 'none';
-    displayFormPatient.style.display = 'none';
+btnClosePatientForm.addEventListener('click', () => {
+    closePatientForm();
 });
 // ---------------------------------------------------------------------------------------------
 
 
-// ------------------------Peticiones GET Paises/Provincias/Localidades-------------------------
+// ------------------------GET Requests Countries/Provinces/Cities-------------------------
 document.addEventListener("DOMContentLoaded", function() {
 
     // Función para cargar países en un select específico
-    function cargarPaises(paisSelect) {
+    function loadCountries(countrySelect) {
         fetch('/portal/patient/api/paises/')
             .then(response => response.json())
             .then(data => {
-                data.forEach(pais => {
+                data.forEach(country => {
                     const option = document.createElement("option");
-                    option.value = pais.id;
-                    option.textContent = pais.nombre;
-                    paisSelect.appendChild(option);
+                    option.value = country.id;
+                    option.textContent = country.nombre;
+                    countrySelect.appendChild(option);
                 });
             });
     }
 
+    // “handle”, generalmente significa que esta función se encarga de procesar o responder
+    // a un evento específico,en este caso, la selección de un país.
+    
     // Función para manejar la selección de país y cargar provincias
-    function manejarSeleccionPais(paisSelect, provinciaSelect, localidadSelect) {
-        paisSelect.addEventListener("change", function() {
-            const paisId = this.value;
+    function handleCountrySelection(countrySelect, provinceSelect, departmentSelect) {
+        countrySelect.addEventListener("change", function() {
+            const countryId = this.value;
 
-            if (paisId) {
-                provinciaSelect.disabled = false;
-                provinciaSelect.innerHTML = '<option value="">Seleccione una provincia</option>';
+            if (countryId) {
+                provinceSelect.disabled = false;
+                provinceSelect.innerHTML = '<option value="">Seleccione una provincia</option>';
 
-                fetch(`/portal/patient/api/provincias/?pais_id=${paisId}`)
+                fetch(`/portal/patient/api/provincias/?pais_id=${countryId}`)
                     .then(response => response.json())
                     .then(data => {
-                        data.forEach(provincia => {
+                        data.forEach(province => {
                             const option = document.createElement("option");
-                            option.value = provincia.id;
-                            option.textContent = provincia.nombre;
-                            provinciaSelect.appendChild(option);
+                            option.value = province.id;
+                            option.textContent = province.nombre;
+                            provinceSelect.appendChild(option);
                         });
                     });
             } else {
-                provinciaSelect.disabled = true;
-                localidadSelect.disabled = true;
-                provinciaSelect.innerHTML = '<option value="">Seleccione una provincia</option>';
-                localidadSelect.innerHTML = '<option value="">Seleccione una localidad</option>';
+                provinceSelect.disabled = true;
+                departmentSelect.disabled = true;
+                provinceSelect.innerHTML = '<option value="">Seleccione una provincia</option>';
+                departmentSelect.innerHTML = '<option value="">Seleccione una localidad</option>';
             }
         });
     }
 
     // Función para manejar la selección de provincia y cargar localidades
-    function manejarSeleccionProvincia(provinciaSelect, localidadSelect) {
-        provinciaSelect.addEventListener("change", function() {
-            const provinciaId = this.value;
+    function handleProvinceSelection(provinceSelect, departmentSelect) {
+        provinceSelect.addEventListener("change", function() {
+            const provinceId = this.value;
 
-            if (provinciaId) {
-                localidadSelect.disabled = false;
-                localidadSelect.innerHTML = '<option value="">Seleccione una localidad</option>';
+            if (provinceId) {
+                departmentSelect.disabled = false;
+                departmentSelect.innerHTML = '<option value="">Seleccione una localidad</option>';
 
-                fetch(`/portal/patient/api/localidades/?provincia_id=${provinciaId}`)
+                fetch(`/portal/patient/api/localidades/?provincia_id=${provinceId}`)
                     .then(response => response.json())
                     .then(data => {
-                        data.forEach(localidad => {
+                        data.forEach(city => {
                             const option = document.createElement("option");
-                            option.value = localidad.id;
-                            option.textContent = localidad.nombre;
-                            localidadSelect.appendChild(option);
+                            option.value = city.id;
+                            option.textContent = city.nombre;
+                            departmentSelect.appendChild(option);
                         });
                     });
             } else {
-                localidadSelect.disabled = true;
-                localidadSelect.innerHTML = '<option value="">Seleccione una localidad</option>';
+                departmentSelect.disabled = true;
+                departmentSelect.innerHTML = '<option value="">Seleccione una localidad</option>';
             }
         });
     }
 
     // Seleccionar los elementos del DOM para habitual
-    const habitualPaisSelect = document.getElementById("habitual-pais");
-    const habitualProvinciaSelect = document.getElementById("habitual-provincia");
-    const habitualLocalidadSelect = document.getElementById("habitual-localidad");
+    const habitualCountrySelect = document.getElementById("habitual-pais");
+    const habitualProvinceSelect = document.getElementById("habitual-provincia");
+    const habitualCitySelect = document.getElementById("habitual-localidad");
 
     // Seleccionar los elementos del DOM para actual
-    const actualPaisSelect = document.getElementById("actual-pais");
-    const actualProvinciaSelect = document.getElementById("actual-provincia");
-    const actualLocalidadSelect = document.getElementById("actual-localidad");
+    const actualCountrySelect = document.getElementById("actual-pais");
+    const actualProvinceSelect = document.getElementById("actual-provincia");
+    const actualCitySelect = document.getElementById("actual-localidad");
 
     // Cargar países para habitual y actual
-    cargarPaises(habitualPaisSelect);
-    cargarPaises(actualPaisSelect);
+    loadCountries(habitualCountrySelect);
+    loadCountries(actualCountrySelect);
 
     // Manejar selección de país y cargar provincias/localidades para habitual
-    manejarSeleccionPais(habitualPaisSelect, habitualProvinciaSelect, habitualLocalidadSelect);
-    manejarSeleccionProvincia(habitualProvinciaSelect, habitualLocalidadSelect);
+    handleCountrySelection(habitualCountrySelect, habitualProvinceSelect, habitualCitySelect);
+    handleProvinceSelection(habitualProvinceSelect, habitualCitySelect);
 
     // Manejar selección de país y cargar provincias/localidades para actual
-    manejarSeleccionPais(actualPaisSelect, actualProvinciaSelect, actualLocalidadSelect);
-    manejarSeleccionProvincia(actualProvinciaSelect, actualLocalidadSelect);
+    handleCountrySelection(actualCountrySelect, actualProvinceSelect, actualCitySelect);
+    handleProvinceSelection(actualProvinceSelect, actualCitySelect);
 });
-
 // ---------------------------------------------------------------------------------------------
 
 
-// ----------------------------Peticiones POST Pacientes/Domicilios-----------------------------
-function getCookie(name) {
+// ----------------------------POST Requests Patients/Addresses-----------------------------
+function getCSRFToken(name) {
     let cookieValue = null;
     if (document.cookie && document.cookie !== '') {
         const cookies = document.cookie.split(';');
@@ -134,7 +141,7 @@ function getCookie(name) {
     }
     return cookieValue;
 }
-const csrftoken = getCookie('csrftoken');
+const csrfToken = getCSRFToken('csrftoken');
 
 document.getElementById('paciente-form').addEventListener('submit', function(event) {
     event.preventDefault();  // Prevenir envío tradicional
@@ -178,85 +185,90 @@ document.getElementById('paciente-form').addEventListener('submit', function(eve
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
-            'X-CSRFToken': csrftoken  // Añadir el token CSRF en el encabezado
+            'X-CSRFToken': csrfToken  // Añadir el token CSRF en el encabezado
         },
         body: JSON.stringify(formData),
     })
     .then(response => response.json())
     .then(data => {
         console.log('Paciente creado:', data);
+
+        // 1. Reiniciar el formulario
+        document.getElementById('paciente-form').reset();
+
+        // 2. Cerrar el formulario
+        closePatientForm();
+
+        // 3. Actualizar la tabla con los datos del paciente
+        fetchPatientsData();
     })
     .catch((error) => {
         console.error('Error:', error);
     });
 });
-
 // ---------------------------------------------------------------------------------------------
 
-document.addEventListener('DOMContentLoaded', () => {
-    // Selecciona el contenedor donde se insertarán las filas
+
+// ----------------------------GET Patients Data for Table-------------------------------------
+// Función para poblar la tabla con los datos del paciente
+function populateTable(data) {
     const tableBody = document.querySelector('.patient-get__table-body');
+    
+    // Limpia el contenido actual del cuerpo de la tabla antes de agregar nuevas filas
+    tableBody.innerHTML = '';
 
-    // Función para crear y agregar las filas de la tabla con los datos obtenidos de la API
-    function populateTable(data) {
-        data.forEach(patient => {
-            // Crea el div con la clase 'patient-get__table-body__row'
-            const row = document.createElement('div');
-            row.classList.add('patient-get__table-body__row');
+    data.forEach(patient => {
+        const row = document.createElement('div');
+        row.classList.add('patient-get__table-body__row');
 
-            // Crea los span con las respectivas clases y datos del paciente
-            const apellidoSpan = document.createElement('span');
-            apellidoSpan.classList.add('col-3');
-            apellidoSpan.textContent = patient.apellido;
+        const lastNameSpan = document.createElement('span');
+        lastNameSpan.classList.add('col-3');
+        lastNameSpan.textContent = patient.apellido;
 
-            const nombreSpan = document.createElement('span');
-            nombreSpan.classList.add('col-3');
-            nombreSpan.textContent = patient.nombre;
+        const firstNameSpan = document.createElement('span');
+        firstNameSpan.classList.add('col-3');
+        firstNameSpan.textContent = patient.nombre;
 
-            const codigoIdentidadSpan = document.createElement('span');
-            codigoIdentidadSpan.classList.add('col-2');
-            codigoIdentidadSpan.textContent = patient.codigo_identidad;
+        const idCodeSpan = document.createElement('span');
+        idCodeSpan.classList.add('col-2');
+        idCodeSpan.textContent = patient.codigo_identidad;
 
-            const fechaNacimientoSpan = document.createElement('span');
-            fechaNacimientoSpan.classList.add('col-2');
-            const fecha = new Date(patient.fecha_nacimiento);
-            fechaNacimientoSpan.textContent = fecha.toLocaleDateString();
+        const birthDateSpan = document.createElement('span');
+        birthDateSpan.classList.add('col-2');
+        const birthDate = new Date(patient.fecha_nacimiento);
+        birthDateSpan.textContent = birthDate.toLocaleDateString();
 
-            // Crea el div que contendrá los 3 botones para la columna 'Acciones'
-            const accionesSpan = document.createElement('span');
-            accionesSpan.classList.add('col-2', 'actions-container'); // Asigna clase 'actions-container' para estilos adicionales si es necesario
+        const actionsSpan = document.createElement('span');
+        actionsSpan.classList.add('col-2', 'patient-get__table-body__row-actions');
 
-            // Crear los 3 botones
-            const btnVer = document.createElement('button');
-            btnVer.textContent = 'Ver';
-            btnVer.classList.add('btn', 'btn-ver'); // Clases para estilizar los botones
+        const btnView = document.createElement('button');
+        btnView.innerHTML = `<img src="${srcSvgView}" alt="View" width="16" height="16">`;
+        btnView.classList.add('patient-get__table-body__row-actions__btn', 'view-btn');
 
-            const btnEditar = document.createElement('button');
-            btnEditar.textContent = 'Editar';
-            btnEditar.classList.add('btn', 'btn-editar');
+        const btnEdit = document.createElement('button');
+        btnEdit.innerHTML = `<img src="${srcSvgEdit}" alt="Edit" width="16" height="16">`;
+        btnEdit.classList.add('patient-get__table-body__row-actions__btn', 'edit-btn');
 
-            const btnEliminar = document.createElement('button');
-            btnEliminar.textContent = 'Eliminar';
-            btnEliminar.classList.add('btn', 'btn-eliminar');
+        const btnDelete = document.createElement('button');
+        btnDelete.innerHTML = `<img src="${srcSvgDelete}" alt="Delete" width="16" height="16">`;
+        btnDelete.classList.add('patient-get__table-body__row-actions__btn', 'delete-btn');
 
-            // Añadir los botones al div de acciones
-            accionesSpan.appendChild(btnVer);
-            accionesSpan.appendChild(btnEditar);
-            accionesSpan.appendChild(btnEliminar);
+        actionsSpan.appendChild(btnView);
+        actionsSpan.appendChild(btnEdit);
+        actionsSpan.appendChild(btnDelete);
 
-            // Añade los spans y div de acciones al div de fila
-            row.appendChild(apellidoSpan);
-            row.appendChild(nombreSpan);
-            row.appendChild(codigoIdentidadSpan);
-            row.appendChild(fechaNacimientoSpan);
-            row.appendChild(accionesSpan);
+        row.appendChild(lastNameSpan);
+        row.appendChild(firstNameSpan);
+        row.appendChild(idCodeSpan);
+        row.appendChild(birthDateSpan);
+        row.appendChild(actionsSpan);
 
-            // Inserta la fila en el cuerpo de la tabla
-            tableBody.appendChild(row);
-        });
-    }
+        tableBody.appendChild(row);
+    });
+}
 
-    // Llamada a la API
+// Función para obtener los datos de la API
+function fetchPatientsData() {
     fetch('/portal/patient/api/pacientes/basico/')
         .then(response => response.json())
         .then(data => {
@@ -265,4 +277,12 @@ document.addEventListener('DOMContentLoaded', () => {
         .catch(error => {
             console.error('Error al obtener los datos:', error);
         });
+}
+
+// Ejecuta el código al cargar el DOM
+document.addEventListener('DOMContentLoaded', () => {
+    fetchPatientsData(); // Llamada inicial para poblar la tabla
 });
+
+// Ejemplo de cómo podrías ejecutar la función en otro lugar del código
+// fetchPatientsData(); // Llamada cuando se necesite actualizar los datos o invocar en otro evento

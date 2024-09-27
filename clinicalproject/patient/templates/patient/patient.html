@@ -80,187 +80,183 @@
                 </button>
             </div>
 
-            <div class="patient-post__form-body">
-                <form id="paciente-form" class="patient-post__form-body">
-                    {% csrf_token %}
-                    <!------------------------Personal Data--------------------------------->
-                    <div class="patient-post__form-body__content-data">
-                        <h3 class="col-12">Datos Personales</h3>
-                        <div class="flex-column col-3">
-                            <label for="nombre" class="form-label">Nombre</label>
-                            <input type="text" class="form-control" id="nombre" name="nombre" maxlength="50" required>
-                        </div>
-                        
-                        <div class="flex-column col-3">
-                            <label for="apellido" class="form-label">Apellido</label>
-                            <input type="text" class="form-control" id="apellido" name="apellido" maxlength="50" required>
-                        </div>
-                        
-                        <div class="flex-column col-3">
-                            <label for="nacionalidad" class="form-label">Nacionalidad</label>
-                            <input type="text" class="form-control" id="nacionalidad" name="nacionalidad" maxlength="20" required>
-                        </div>
-                        
-                        <div class="flex-column col-3">
-                            <label for="codigo_identidad" class="form-label">Código de Identidad</label>
-                            <input type="text" class="form-control" id="codigo_identidad" name="codigo_identidad" maxlength="20" required>
-                        </div>
-            
-                        
-                        <div class="flex-column col-3">
-                            <label for="sexo" class="form-label">Sexo</label>
-                            <select class="form-select" id="sexo" name="sexo" required>
-                                <option value="">Seleccione una opción</option>
-                                <option value="M">Masculino</option>
-                                <option value="F">Femenino</option>
-                            </select>
-                        </div>
-                        
-                        <div class="flex-column col-3">
-                            <label for="fecha_nacimiento" class="form-label">Fecha de Nacimiento</label>
-                            <input type="date" class="form-control" id="fecha_nacimiento" name="fecha_nacimiento" required>
-                        </div>
-                        
-                        <div class="flex-column col-3">
-                            <label for="escolaridad" class="form-label">Escolaridad</label>
-                            <select class="form-select" id="escolaridad" name="escolaridad" required>
-                                <option value="">Seleccione una opción</option>
-                                <option value="Sin Estudios">Sin Estudios</option>
-                                <option value="Primaria Incompleta">Primaria Incompleta</option>
-                                <option value="Primaria Completa">Primaria Completa</option>
-                                <option value="Secundaria Incompleta">Secundaria Incompleta</option>
-                                <option value="Secundaria Completa">Secundaria Completa</option>
-                                <option value="Terciario/Universitario Incompleto">Terciario/Universitario Incompleto</option>
-                                <option value="Terciario/Universitario Completo">Terciario/Universitario Completo</option>
-                            </select>
-                        </div>
-            
-                        <div class="flex-column col-3">
-                            <label for="servicio_militar" class="form-label">Servicio Militar</label>
-                            <select class="form-select" id="servicio_militar" name="servicio_militar" required>
-                                <option value="">Seleccione una opción</option>
-                                <option value="Y">Sí</option>
-                                <option value="N">No</option>
-                            </select>
-                        </div>
-            
-                        <div class="flex-column col-4">
-                            <label for="estado_civil" class="form-label">Estado Civil</label>
-                            <select class="form-select" id="estado_civil" name="estado_civil" required>
-                                <option value="">Seleccione una opción</option>
-                                <option value="Soltero/a">Soltero/a</option>
-                                <option value="Casado/a">Casado/a</option>
-                                <option value="Divorciado/a">Divorciado/a</option>
-                                <option value="Viudo/a">Viudo/a</option>
-                                <option value="Unido/a en Pareja de Hecho">Unido/a en Pareja de Hecho</option>
-                                <option value="Separado/a">Separado/a</option>
-                                <option value="En una Relacion de Pareja (No Formalizada)">En una Relación de Pareja (No Formalizada)</option>
-                            </select>
-                        </div>
-            
-                        <div class="flex-column col-4">
-                            <label for="ocupacion" class="form-label">Ocupación</label>
-                            <input type="text" class="form-control" id="ocupacion" name="ocupacion" maxlength="60" required>
-                        </div>
-                        
-                        <div class="flex-column col-4">
-                            <label for="celular" class="form-label">Celular</label>
-                            <input type="text" class="form-control" id="celular" name="celular" maxlength="20" required>
-                        </div>
-    
+            <form id="paciente-form" class="patient-post__form-body">
+                {% csrf_token %}
+                <!------------------------Personal Data--------------------------------->
+                <div class="patient-post__form-body__content-data">
+                    <h3 class="col-12">Datos Personales</h3>
+                    <div class="flex-column col-3">
+                        <label for="nombre" class="form-label">Nombre</label>
+                        <input type="text" class="form-control" id="nombre" name="nombre" maxlength="50" required>
                     </div>
-                    <!---------------------------------------------------------------------->
+                    
+                    <div class="flex-column col-3">
+                        <label for="apellido" class="form-label">Apellido</label>
+                        <input type="text" class="form-control" id="apellido" name="apellido" maxlength="50" required>
+                    </div>
+                    
+                    <div class="flex-column col-3">
+                        <label for="nacionalidad" class="form-label">Nacionalidad</label>
+                        <input type="text" class="form-control" id="nacionalidad" name="nacionalidad" maxlength="20" required>
+                    </div>
+                    
+                    <div class="flex-column col-3">
+                        <label for="codigo_identidad" class="form-label">Código de Identidad</label>
+                        <input type="text" class="form-control" id="codigo_identidad" name="codigo_identidad" maxlength="20" required>
+                    </div>
+        
+                    
+                    <div class="flex-column col-3">
+                        <label for="sexo" class="form-label">Sexo</label>
+                        <select class="form-select" id="sexo" name="sexo" required>
+                            <option value="">Seleccione una opción</option>
+                            <option value="M">Masculino</option>
+                            <option value="F">Femenino</option>
+                        </select>
+                    </div>
+                    
+                    <div class="flex-column col-3">
+                        <label for="fecha_nacimiento" class="form-label">Fecha de Nacimiento</label>
+                        <input type="date" class="form-control" id="fecha_nacimiento" name="fecha_nacimiento" required>
+                    </div>
+                    
+                    <div class="flex-column col-3">
+                        <label for="escolaridad" class="form-label">Escolaridad</label>
+                        <select class="form-select" id="escolaridad" name="escolaridad" required>
+                            <option value="">Seleccione una opción</option>
+                            <option value="Sin Estudios">Sin Estudios</option>
+                            <option value="Primaria Incompleta">Primaria Incompleta</option>
+                            <option value="Primaria Completa">Primaria Completa</option>
+                            <option value="Secundaria Incompleta">Secundaria Incompleta</option>
+                            <option value="Secundaria Completa">Secundaria Completa</option>
+                            <option value="Terciario/Universitario Incompleto">Terciario/Universitario Incompleto</option>
+                            <option value="Terciario/Universitario Completo">Terciario/Universitario Completo</option>
+                        </select>
+                    </div>
+        
+                    <div class="flex-column col-3">
+                        <label for="servicio_militar" class="form-label">Servicio Militar</label>
+                        <select class="form-select" id="servicio_militar" name="servicio_militar" required>
+                            <option value="">Seleccione una opción</option>
+                            <option value="Y">Sí</option>
+                            <option value="N">No</option>
+                        </select>
+                    </div>
+        
+                    <div class="flex-column col-4">
+                        <label for="estado_civil" class="form-label">Estado Civil</label>
+                        <select class="form-select" id="estado_civil" name="estado_civil" required>
+                            <option value="">Seleccione una opción</option>
+                            <option value="Soltero/a">Soltero/a</option>
+                            <option value="Casado/a">Casado/a</option>
+                            <option value="Divorciado/a">Divorciado/a</option>
+                            <option value="Viudo/a">Viudo/a</option>
+                            <option value="Unido/a en Pareja de Hecho">Unido/a en Pareja de Hecho</option>
+                            <option value="Separado/a">Separado/a</option>
+                            <option value="En una Relacion de Pareja (No Formalizada)">En una Relación de Pareja (No Formalizada)</option>
+                        </select>
+                    </div>
+        
+                    <div class="flex-column col-4">
+                        <label for="ocupacion" class="form-label">Ocupación</label>
+                        <input type="text" class="form-control" id="ocupacion" name="ocupacion" maxlength="60" required>
+                    </div>
+                    
+                    <div class="flex-column col-4">
+                        <label for="celular" class="form-label">Celular</label>
+                        <input type="text" class="form-control" id="celular" name="celular" maxlength="20" required>
+                    </div>
 
-                    <!-------------------------Address Data--------------------------------->
-                    <div class="patient-post__form-body__content-address">
-                        <!-------------------------Address Usual--------------------------------->
-                        <div class="patient-post__form-body__content-address-usual col-6">
-                            <h3 class="col-6">Domicilio Habitual</h3>
-                            <div class="flex-column col-3">
-                                <label for="habitual-pais" class="form-label">País</label>
-                                <select class="form-select" id="habitual-pais">
-                                    <option value="">Seleccione un país</option>
-                                </select>
-                            </div>
-                            
-                            <div class="flex-column col-3">
-                                <label for="habitual-provincia" class="form-label">Provincia</label>
-                                <select class="form-select" id="habitual-provincia" disabled>
-                                    <option value="">Seleccione una provincia</option>
-                                </select>
-                            </div>
+                </div>
+                <!---------------------------------------------------------------------->
 
-                            <div class="flex-column col-3">
-                                <label for="habitual-localidad" class="form-label">Localidad</label>
-                                <select class="form-select" id="habitual-localidad" disabled>
-                                    <option value="">Seleccione una localidad</option>
-                                </select>
-                            </div>
-                            
-                            <div class="flex-column col-3">
-                                <label for="habitual-calle" class="form-label">Calle</label>
-                                <input type="text" class="form-control" id="habitual-calle" name="habitual-calle">
-                            </div>
-                            
-                            <div class="flex-column col-3">
-                                <label for="habitual-nro" class="form-label">Nro</label>
-                                <input type="text" class="form-control" id="habitual-nro" name="habitual-nro">
-                            </div>
-                            
-                            <div class="flex-column col-3">
-                                <label for="habitual-detalle" class="form-label">Detalle</label>
-                                <input type="text" class="form-control" id="habitual-detalle" name="habitual-detalle">
-                            </div>
-                       </div>
-                        <!----------------------------------------------------------------------->
-
-                        <!-------------------------Address Current--------------------------------->
-                        <div class="patient-post__form-body__content-address-current col-6">
-                            <h3 class="col-6">Domicilio Actual</h3>
-                            <div class="flex-column col-3">
-                                <label for="actual-pais" class="form-label">País</label>
-                                <select class="form-select" id="actual-pais">
-                                    <option value="">Seleccione un país</option>
-                                </select>
-                            </div>
-                            
-                            <div class="flex-column col-3">
-                                <label for="actual-provincia" class="form-label">Provincia:</label>
-                                <select class="form-select" id="actual-provincia" disabled>
-                                    <option value="">Seleccione una provincia</option>
-                                </select>
-                            </div>
-
-                            <div class="flex-column col-3">
-                                <label for="actual-localidad" class="form-label">Localidad</label>
-                                <select class="form-select" id="actual-localidad" disabled>
-                                    <option value="">Seleccione una localidad</option>
-                                </select>
-                            </div>
-                            
-                            <div class="flex-column col-3">
-                                <label for="actual-calle" class="form-label">Calle</label>
-                                <input type="text" class="form-control" id="actual-calle" name="actual-calle">
-                            </div>
-                            
-                            <div class="flex-column col-3">
-                                <label for="actual-nro" class="form-label">Nro</label>
-                                <input type="text" class="form-control" id="actual-nro" name="actual-nro">
-                            </div>
-
-                            <div class="flex-column col-3">
-                                <label for="actual-detalle" class="form-label">Detalle</label>
-                                <input type="text" class="form-control" id="actual-detalle" name="actual-detalle">
-                            </div>
+                <!-------------------------Address Data--------------------------------->
+                <div class="patient-post__form-body__content-address">
+                    <!-------------------------Address Usual--------------------------------->
+                    <div class="patient-post__form-body__content-address-usual col-6">
+                        <h3 class="col-6">Domicilio Habitual</h3>
+                        <div class="flex-column col-3">
+                            <label for="habitual-pais" class="form-label">País</label>
+                            <select class="form-select" id="habitual-pais">
+                                <option value="">Seleccione un país</option>
+                            </select>
                         </div>
-                        <!----------------------------------------------------------------------->
+                        
+                        <div class="flex-column col-3">
+                            <label for="habitual-provincia" class="form-label">Provincia</label>
+                            <select class="form-select" id="habitual-provincia" disabled>
+                                <option value="">Seleccione una provincia</option>
+                            </select>
+                        </div>
+
+                        <div class="flex-column col-3">
+                            <label for="habitual-localidad" class="form-label">Localidad</label>
+                            <select class="form-select" id="habitual-localidad" disabled>
+                                <option value="">Seleccione una localidad</option>
+                            </select>
+                        </div>
+                        
+                        <div class="flex-column col-3">
+                            <label for="habitual-calle" class="form-label">Calle</label>
+                            <input type="text" class="form-control" id="habitual-calle" name="habitual-calle">
+                        </div>
+                        
+                        <div class="flex-column col-3">
+                            <label for="habitual-nro" class="form-label">Nro</label>
+                            <input type="text" class="form-control" id="habitual-nro" name="habitual-nro">
+                        </div>
+                        
+                        <div class="flex-column col-3">
+                            <label for="habitual-detalle" class="form-label">Detalle</label>
+                            <input type="text" class="form-control" id="habitual-detalle" name="habitual-detalle">
+                        </div>
+                   </div>
+                    <!----------------------------------------------------------------------->
+                    
+                    <!-------------------------Address Current--------------------------------->
+                    <div class="patient-post__form-body__content-address-current col-6">
+                        <h3 class="col-6">Domicilio Actual</h3>
+                        <div class="flex-column col-3">
+                            <label for="actual-pais" class="form-label">País</label>
+                            <select class="form-select" id="actual-pais">
+                                <option value="">Seleccione un país</option>
+                            </select>
+                        </div>
+                        
+                        <div class="flex-column col-3">
+                            <label for="actual-provincia" class="form-label">Provincia:</label>
+                            <select class="form-select" id="actual-provincia" disabled>
+                                <option value="">Seleccione una provincia</option>
+                            </select>
+                        </div>
+
+                        <div class="flex-column col-3">
+                            <label for="actual-localidad" class="form-label">Localidad</label>
+                            <select class="form-select" id="actual-localidad" disabled>
+                                <option value="">Seleccione una localidad</option>
+                            </select>
+                        </div>
+                        
+                        <div class="flex-column col-3">
+                            <label for="actual-calle" class="form-label">Calle</label>
+                            <input type="text" class="form-control" id="actual-calle" name="actual-calle">
+                        </div>
+                        
+                        <div class="flex-column col-3">
+                            <label for="actual-nro" class="form-label">Nro</label>
+                            <input type="text" class="form-control" id="actual-nro" name="actual-nro">
+                        </div>
+
+                        <div class="flex-column col-3">
+                            <label for="actual-detalle" class="form-label">Detalle</label>
+                            <input type="text" class="form-control" id="actual-detalle" name="actual-detalle">
+                        </div>
                     </div>
                     <!----------------------------------------------------------------------->
-                    <button type="submit">Guardar</button>
-                </form>
-
-
-            </div>
+                </div>
+                <!----------------------------------------------------------------------->
+                <button type="submit">Guardar</button>
+            </form>
         </div>
     </div>
     <!-- -------------------------------------------------------------- -->
@@ -268,5 +264,10 @@
 {% endblock %}
 
 {% block scripts.js %}
+<script>
+    const srcSvgView = "{% static 'rsc/icon/view.svg' %}";
+    const srcSvgEdit = "{% static 'rsc/icon/edit.svg' %}";
+    const srcSvgDelete = "{% static 'rsc/icon/delete.svg' %}";
+</script>
 <script src="{% static 'patient/js/script.js' %}"></script>
 {% endblock %}
