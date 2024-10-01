@@ -5,18 +5,22 @@ from rest_framework.response import Response
 from rest_framework.decorators import action
 from .models import Paises, Provincias, Localidades, Pacientes
 from .serializers import PaisSerializer, ProvinciaSerializer, LocalidadSerializer, PacienteSerializer, PacienteBasicInfoSerializer
+from .pagination.patient import PatientPagination 
 
 class PacienteViewSet(ModelViewSet):
     queryset = Pacientes.objects.all()
     serializer_class = PacienteSerializer  # Este es el serializer por defecto
     permission_classes = [IsAuthenticated]
+    pagination_class = PatientPagination # Usar la paginación personalizada
 
     # Acción adicional para devolver solo la información básica
     @action(detail=False, methods=['get'])
     def basico(self, request):
-        pacientes = self.get_queryset()  # Obtener todos los pacientes
-        serializer = PacienteBasicInfoSerializer(pacientes, many=True)
-        return Response(serializer.data)
+        paginator = self.paginator  
+        pacientes = self.get_queryset()  # Obtener todos los pacientes  
+        paginated_pacientes = paginator.paginate_queryset(pacientes, request)  
+        serializer = PacienteBasicInfoSerializer(paginated_pacientes, many=True)  
+        return paginator.get_paginated_response(serializer.data) 
 
     # Sobrescribir el método `retrieve` para devolver el detalle completo de un paciente
     def retrieve(self, request, pk=None):
