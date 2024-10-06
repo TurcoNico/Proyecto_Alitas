@@ -12,10 +12,12 @@ def portal(request):
         profesional = Profesionales.objects.get(user=user)
         profesion = profesional.profesion
     except Profesionales.DoesNotExist:
-        profesion = 'No Especificado' 
+        if user.is_superuser:
+            profesion = 'Administrador'
+        else:
+            profesion = 'No Especificado' 
     # Puedes añadir 'profesional' al contexto si necesitas usarlo en la plantilla
     context = {"full_name": full_name, "profesional": profesion}
     print(context)
     
     return render(request, 'portal/portal.html', context)
-

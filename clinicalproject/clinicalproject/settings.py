@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     'appointment.apps.AppointmentConfig',
     'portal.apps.PortalConfig',
     'patient.apps.PatientConfig',
+    'user_settings.apps.UserSettingsConfig',
     'rest_framework',
 ]
 

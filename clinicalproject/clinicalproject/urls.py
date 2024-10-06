@@ -28,4 +28,5 @@ urlpatterns = [
     path('portal/patient/', include('patient.urls')), 
     path('logout/', auth_views.LogoutView.as_view(), name='logout'),
     path('api-auth/', include('rest_framework.urls')),
+    path('user_settings/', include('user_settings.urls')),
 ]
