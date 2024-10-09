@@ -1,87 +1,44 @@
-<!DOCTYPE html>
-<html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>User Settings</title>
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <style>
-        body { font-family: Arial, sans-serif; margin: 20px; }
-        input { display: block; margin: 10px 0; }
-    </style>
-</head>
-<body>
-    <h1>User Settings</h1>
+{% extends "base.html" %}
+{% load static %}
 
-    <div id="message"></div>
+{% block title %}Configuración{% endblock %}
 
-    <h2>Listar Profesionales</h2>
-    <button id="fetch-professionals">Cargar Profesionales</button>
-    <div id="professionals-list"></div>
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'user_settings/css/styles.css' %}">
+{% endblock %}
 
-    <h2>Crear Profesional Administrador</h2>
-    <form id="create-professional-form" method="post">
+{% block left_nav %}
+<a href="{% url 'portal' %}">
+    <img src="{% static 'rsc/icon/back_to_menu.svg' %}" alt="back-icon">
+</a>
+<img src="{% static 'rsc/icon/setting.png' %}" alt="Logo" class="header__logo-image">
+{% endblock %}
+
+{% block center_nav %}
+<h2>Configuración de usuario</h2>
+{% endblock %}
+
+<!-- Datos del usuario -->
+{% block content %}
+<div class="user-settings">
+    <h2>Configuración de la Contraseña</h2>
+    <form id="password-change-form">
         {% csrf_token %}
-        <label for="username">Nombre de usuario</label>
-        <input type="text" name="username" id="username" placeholder="Nombre de usuario" required>
-        
-        <label for="first_name">Nombre</label>
-        <input type="text" name="first_name" id="first_name" placeholder="Nombre" required>
-        
-        <label for="last_name">Apellido</label>
-        <input type="text" name="last_name" id="last_name" placeholder="Apellido" required>
-        
-        <label for="email">Correo Electrónico</label>
-        <input type="email" name="email" id="email" placeholder="Correo Electrónico" required>
-        
-        <label for="codigo_identidad">Código de Identidad</label>
-        <input type="text" name="codigo_identidad" id="codigo_identidad" placeholder="Código de Identidad" required>
-        
-        <label for="profesion">Profesión</label>
-        <input type="text" name="profesion" id="profesion" placeholder="Profesión" required>
-        
-        <label for="password1">Contraseña</label>
-        <input type="password" name="password1" id="password1" placeholder="Contraseña" required>
-        
-        <label for="password2">Repetir Contraseña</label>
-        <input type="password" name="password2" id="password2" placeholder="Repetir Contraseña" required>
-        
-        <button type="submit">Crear Profesional</button>
-    </form>
-
-    <h2>Cambiar Contraseña de Profesional</h2>
-    <form id="change-password-form" method="post">
-        {% csrf_token %}
-        <label for="id">ID del Profesional</label>
-        <input type="number" name="id" id="id" placeholder="ID del Profesional" required>
-        
-        <label for="old_password">Contraseña actual</label>
-        <input type="password" name="old_password" id="old_password" placeholder="Contraseña actual" required>
-        
-        <label for="new_password">Nueva Contraseña</label>
-        <input type="password" name="new_password" id="new_password" placeholder="Nueva Contraseña" required>
-        
+        <div class="form-group">
+            <label for="old_password">Contraseña Actual:</label>
+            <input type="password" id="old_password" name="old_password" required>
+        </div>
+        <div class="form-group">
+            <label for="new_password">Nueva Contraseña:</label>
+            <input type="password" id="new_password" name="new_password" required>
+        </div>
+        <div class="form-group">
+            <label for="confirm_password">Confirmar Nueva Contraseña:</label>
+            <input type="password" id="confirm_password" name="confirm_password" required>
+        </div>
         <button type="submit">Cambiar Contraseña</button>
     </form>
-
-    <script>
-        $(document).ready(function() {
-            $('#fetch-professionals').on('click', function() {
-                $.ajax({
-                    url: '/api/profesionales/',  // Ajusta la URL según tu configuración
-                    method: 'GET',
-                    success: function(data) {
-                        $('#professionals-list').empty();
-                        data.forEach(function(professional) {
-                            $('#professionals-list').append('<div>' + professional.user.username + ' - ' + professional.profesion + '</div>');
-                        });
-                    },
-                    error: function(error) {
-                        $('#message').text('Error al cargar los profesionales');
-                    }
-                });
-            });
-        });
-    </script>
-</body>
-</html>
+    <div id="message"></div>
+</div>
+<script src="{% static 'user_settings/js/password_change.js' %}"></script>
+{% endblock %}
